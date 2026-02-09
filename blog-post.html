@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>How AI Could Transform Quality Assurance in Refineries | Anthony Hinojosa</title>
+  <meta name="description" content="Exploring what machine learning could mean for analytical testing, product release, and lab operations, from an operator's perspective.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <!-- Header -->
+  <header class="site-header" data-site-header>
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">Anthony Hinojosa</a>
+      <nav aria-label="Primary">
+        <ul class="nav-links">
+          <li><a class="nav-link" data-nav-link href="about.html">About</a></li>
+          <li><a class="nav-link" data-nav-link href="experience.html">Experience</a></li>
+          <li><a class="nav-link" data-nav-link href="projects.html">Projects</a></li>
+          <li><a class="nav-link" data-nav-link href="certifications.html">Certifications</a></li>
+          <li><a class="nav-link" data-nav-link href="blog.html" aria-current="page">Blog</a></li>
+          <li><a class="nav-link" data-nav-link href="resume.html">Resume</a></li>
+          <li><a class="nav-link" data-nav-link href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu" data-menu-toggle>
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu" data-mobile-menu>
+      <div class="mobile-menu-panel" data-mobile-panel>
+        <button class="btn btn-ghost" type="button" data-menu-close>Close</button>
+        <a data-nav-link href="about.html">About</a>
+        <a data-nav-link href="experience.html">Experience</a>
+        <a data-nav-link href="projects.html">Projects</a>
+        <a data-nav-link href="certifications.html">Certifications</a>
+        <a data-nav-link href="blog.html" class="is-active" aria-current="page">Blog</a>
+        <a data-nav-link href="resume.html">Resume</a>
+        <a data-nav-link href="contact.html">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- Blog Post -->
+    <section class="section">
+      <div class="container">
+
+        <article class="blog-post">
+
+          <div class="tag-row"><span class="tag">Technology</span></div>
+          <span class="muted">February 2026</span>
+          <h1>How AI Could Transform Quality Assurance in Refineries</h1>
+          <p class="muted">By Anthony Hinojosa</p>
+
+          <h2>The Current State of Lab Quality Assurance</h2>
+
+          <p>Quality assurance in refining and petrochemical operations follows a process that has been refined over decades, built on precision instrumentation, rigorous standards, and the judgment of experienced technicians. At its core, the workflow is straightforward: samples are collected from various points in the production process, transported to the laboratory, and analyzed using instruments like high-performance liquid chromatography (HPLC), gas chromatography (GC), and Fourier-transform infrared spectroscopy (FTIR). The results are then compared against product specifications, and a go or no-go decision is made before product is released, blended, or diverted.</p>
+
+          <p>This process is reliable. It has kept facilities compliant and products within specification for years. But it is also time-consuming. A single sample may require multiple tests across different instruments, each with its own preparation steps, run times, and calibration requirements. Results do not arrive instantaneously, and in fast-moving production environments, even a short delay between sampling and decision-making can create downstream complications: product held in tanks awaiting clearance, blending schedules pushed back, or off-spec material that could have been caught earlier moving further through the process.</p>
+
+          <p>The human element is both the greatest strength and the most significant variable in this system. Experienced lab technicians develop an intuitive sense for their instruments and their products. They know when a chromatogram looks slightly off, when a particular feedstock tends to produce borderline results, or when seasonal temperature changes affect test outcomes. This institutional knowledge is invaluable, but it is also difficult to transfer, hard to scale, and vulnerable to workforce turnover. When a senior technician retires, years of pattern recognition and contextual understanding leave with them.</p>
+
+          <p>None of this means the current system is broken. It means there is room for improvement, and artificial intelligence represents one of the most promising avenues for that improvement.</p>
+
+          <h2>Where AI Could Make a Difference</h2>
+
+          <p>The potential applications of AI in lab quality assurance are not theoretical abstractions. They are practical extensions of capabilities that already exist in other industries, adapted to the specific demands of refining and petrochemical operations. Four areas stand out as particularly promising.</p>
+
+          <p><strong>Predictive quality analytics</strong> may offer the most immediate impact. Machine learning models can be trained on historical process data (temperatures, pressures, flow rates, feed compositions) alongside corresponding lab results. Once trained, these models can analyze process data in real time and predict product quality before lab results are available. This does not replace laboratory testing; it supplements it by providing an early warning system. If a model predicts that current process conditions are likely to produce off-spec product, operators can investigate and adjust before the lab confirms the problem. The difference between catching an issue thirty minutes earlier and catching it on schedule might mean the difference between a minor adjustment and a significant batch of off-spec material.</p>
+
+          <p><strong>Pattern recognition</strong> is where AI excels in ways that humans simply cannot match at scale. Laboratory instruments generate enormous amounts of data over time: thousands of chromatograms, spectra, and test results accumulating week after week. A skilled technician might notice that a particular GC column is losing resolution over a period of weeks, or that a specific product line tends to drift toward one edge of its specification window during certain conditions. AI systems can identify these patterns across far larger datasets and far longer time horizons, detecting subtle trends in instrument performance or process behavior that might take months for a human observer to recognize. Early detection of equipment drift means proactive maintenance rather than reactive troubleshooting, and early detection of process trends means proactive optimization rather than reactive correction.</p>
+
+          <p><strong>Automated sample prioritization</strong> addresses one of the most practical challenges in any busy laboratory: deciding what to test first. On any given shift, dozens of samples may arrive from different units, each with different urgency levels and different risk profiles. Currently, prioritization is handled through standard operating procedures and technician judgment. An intelligent prioritization system could factor in real-time process conditions, recent test history, current production schedules, and statistical risk models to dynamically rank samples by urgency. A sample from a unit that is running smoothly and has shown consistent results for days might be deprioritized in favor of one from a unit that just experienced a feed change or is approaching a specification boundary. This kind of dynamic, data-driven prioritization could significantly improve lab throughput without adding headcount or instruments.</p>
+
+          <p><strong>Digital twins</strong> represent a longer-term but potentially transformative application. A digital twin is a virtual model of a physical process, in this case a production unit or even an entire facility, that can simulate outcomes based on different input conditions. For quality assurance, a digital twin could allow operators and engineers to ask "what if" questions: what happens to product quality if we change the feed rate? What if the catalyst is approaching end-of-life? What quality impact should we expect from this planned maintenance outage? By simulating quality outcomes before they happen, digital twins support better decision-making and reduce the reliance on trial-and-error approaches that consume time, material, and laboratory resources.</p>
+
+          <h2>The Operator's Perspective</h2>
+
+          <p>Technology works best when it is built by people who understand the operational reality it needs to serve. A data scientist can build a sophisticated machine learning model, but someone who has spent years running tests and making product release decisions understands the edge cases that no training dataset fully captures. They know that the FTIR behaves differently in the first hour after calibration. They know that certain product grades require extra scrutiny during seasonal transitions. They know that the specification sheet says one thing, but the customer's actual tolerance is tighter than what is written down. These are the kinds of practical, hard-won insights that determine whether a technology tool actually gets used on the floor or gathers dust in a server room.</p>
+
+          <p>This is not an argument against data science or software engineering. It is an argument for cross-functional teams that bring together domain expertise and technical capability. The most valuable AI applications in quality assurance will not be the ones that replace the lab technician. They will be the ones that augment the technician's expertise with faster data processing, broader pattern recognition, and more comprehensive historical analysis. The technician still makes the judgment call, but they make it with better information, delivered faster, and with greater context than any single person could assemble on their own.</p>
+
+          <p>The risk of ignoring the operator's perspective is not just that the technology will be poorly designed. It is that it will be actively resisted. People who have built their careers on careful, manual work will not adopt a tool they do not trust, and trust comes from understanding. If the people using the tool helped build it, they understand its strengths, its limitations, and its appropriate applications. If it was handed to them fully formed by a team that never set foot in the lab, adoption will be an uphill battle regardless of how good the underlying model is.</p>
+
+          <h2>What Needs to Happen</h2>
+
+          <p>Realizing the potential of AI in quality assurance requires more than just buying software. Several foundational elements need to be in place before any of the applications described above can deliver meaningful results.</p>
+
+          <p><strong>Investment in data infrastructure</strong> is the most fundamental prerequisite. Many facilities still operate with disconnected systems: laboratory information management systems (LIMS) that do not communicate with process historians, maintenance databases that are separate from quality records, and instrument data that lives on individual workstations rather than in centralized, accessible repositories. AI models are only as good as the data they are trained on, and if that data is fragmented, inconsistent, or inaccessible, the models will be unreliable. Before investing in algorithms, facilities need to invest in data pipelines, integration layers, and governance frameworks that ensure data quality and availability.</p>
+
+          <p><strong>Training the workforce</strong> is equally important. Operators and technicians do not need to become machine learning engineers, but they need to understand what AI can and cannot do. They need to understand the concept of a confidence interval, the difference between a prediction and a certainty, and the conditions under which a model's recommendations should be trusted versus questioned. Without this baseline understanding, the workforce will either over-rely on AI outputs or dismiss them entirely. Neither outcome is productive.</p>
+
+          <p><strong>Starting small</strong> is the most practical piece of advice for any facility considering AI adoption. Wholesale digital transformation is expensive, disruptive, and frequently unsuccessful. Pilot projects focused on specific, well-defined pain points are far more likely to deliver measurable results and build organizational confidence. Predicting quality for a single product on a single unit is a manageable starting point. If it works, expand. If it does not, the investment is limited and the lessons learned are concrete.</p>
+
+          <p><strong>Cross-functional collaboration</strong> is the thread that connects all of the above. The best results come from teams that include domain experts who understand the process, data engineers who understand the infrastructure, data scientists who understand the algorithms, and front-line operators who understand the daily reality. No single discipline has all the answers. The organizations that figure out how to get these groups working together effectively will be the ones that capture the value that AI has to offer.</p>
+
+          <h2>Looking Ahead</h2>
+
+          <p>The intersection of operational expertise and emerging technology represents one of the most promising areas for improvement in industrial operations. Quality assurance has always depended on precision, consistency, and sound judgment. AI does not change what matters; it changes what is possible. Faster detection of problems, broader analysis of trends, smarter allocation of resources, and better-informed decision-making are not replacements for the fundamentals. They are enhancements that allow the fundamentals to be applied more effectively at greater scale.</p>
+
+          <p>Those who understand both domains, the operational reality and the technological capability, will be positioned to lead this transformation. Not because they can code a neural network or because they can run a gas chromatograph, but because they can translate between the two worlds and build solutions that actually work where it counts: on the floor, in the lab, and in the decisions that keep products on-spec and operations running safely.</p>
+
+          <a href="blog.html">&larr; Back to Blog</a>
+
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-wrap">
+      <p><strong>Anthony Hinojosa</strong></p>
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="about.html">About</a>
+        <a href="experience.html">Experience</a>
+        <a href="projects.html">Projects</a>
+        <a href="certifications.html">Certifications</a>
+        <a href="blog.html">Blog</a>
+        <a href="resume.html">Resume</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <span class="muted" style="font-size: 0.85em;">&copy; 2026 Anthony Hinojosa</span>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

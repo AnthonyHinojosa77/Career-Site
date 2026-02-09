@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Blog | Anthony Hinojosa</title>
+  <meta name="description" content="Perspectives on quality, safety, and technology in industrial operations by Anthony Hinojosa.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <!-- Header -->
+  <header class="site-header" data-site-header>
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">Anthony Hinojosa</a>
+      <nav aria-label="Primary">
+        <ul class="nav-links">
+          <li><a class="nav-link" data-nav-link href="about.html">About</a></li>
+          <li><a class="nav-link" data-nav-link href="experience.html">Experience</a></li>
+          <li><a class="nav-link" data-nav-link href="projects.html">Projects</a></li>
+          <li><a class="nav-link" data-nav-link href="certifications.html">Certifications</a></li>
+          <li><a class="nav-link" data-nav-link href="blog.html" aria-current="page">Blog</a></li>
+          <li><a class="nav-link" data-nav-link href="resume.html">Resume</a></li>
+          <li><a class="nav-link" data-nav-link href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu" data-menu-toggle>
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu" data-mobile-menu>
+      <div class="mobile-menu-panel" data-mobile-panel>
+        <button class="btn btn-ghost" type="button" data-menu-close>Close</button>
+        <a data-nav-link href="about.html">About</a>
+        <a data-nav-link href="experience.html">Experience</a>
+        <a data-nav-link href="projects.html">Projects</a>
+        <a data-nav-link href="certifications.html">Certifications</a>
+        <a data-nav-link href="blog.html" class="is-active" aria-current="page">Blog</a>
+        <a data-nav-link href="resume.html">Resume</a>
+        <a data-nav-link href="contact.html">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- Page Header -->
+    <section class="page-header">
+      <div class="container">
+        <h1 class="reveal">Blog</h1>
+        <p class="section-intro reveal">Perspectives on quality, safety, and technology in industrial operations.</p>
+      </div>
+    </section>
+
+    <!-- Blog Posts -->
+    <section class="section">
+      <div class="container">
+
+        <!-- Filter Controls -->
+        <div class="filter-controls reveal" role="toolbar" aria-label="Filter blog posts" data-filter-group="blog">
+          <button class="btn btn-ghost is-active" type="button" data-filter="all" aria-pressed="true">All</button>
+          <button class="btn btn-ghost" type="button" data-filter="technology" aria-pressed="false">Technology</button>
+          <button class="btn btn-ghost" type="button" data-filter="safety" aria-pressed="false">Safety</button>
+          <button class="btn btn-ghost" type="button" data-filter="operations" aria-pressed="false">Operations</button>
+        </div>
+
+        <div class="grid grid-3">
+
+          <!-- Post 1: AI & Quality Assurance -->
+          <div class="filter-item card reveal" data-filter-item="blog" data-category="technology">
+            <span class="muted">February 2026</span>
+            <h3>How AI Could Transform Quality Assurance in Refineries</h3>
+            <p>Exploring what machine learning could mean for analytical testing, product release, and lab operations from an operator's perspective.</p>
+            <a href="blog-post.html" class="btn btn-ghost">Read Post &rarr;</a>
+          </div>
+
+          <!-- Post 2: Lab & Field -->
+          <div class="filter-item card reveal" data-filter-item="blog" data-category="operations">
+            <span class="muted">Coming Soon</span>
+            <h3>Bridging the Lab and the Field</h3>
+            <p>Why cross-functional coordination between laboratory teams and field operations matters for safety and quality.</p>
+            <span class="muted">Coming Soon</span>
+          </div>
+
+          <!-- Post 3: Drones -->
+          <div class="filter-item card reveal" data-filter-item="blog" data-category="safety">
+            <span class="muted">Coming Soon</span>
+            <h3>Drones in Industrial Safety</h3>
+            <p>How FAA Part 107 drone capability creates new possibilities for emergency response and facility inspection.</p>
+            <span class="muted">Coming Soon</span>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-wrap">
+      <p><strong>Anthony Hinojosa</strong></p>
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="about.html">About</a>
+        <a href="experience.html">Experience</a>
+        <a href="projects.html">Projects</a>
+        <a href="certifications.html">Certifications</a>
+        <a href="blog.html">Blog</a>
+        <a href="resume.html">Resume</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <span class="muted" style="font-size: 0.85em;">&copy; 2026 Anthony Hinojosa</span>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -50,6 +50,17 @@ body {
   line-height: 1.6;
 }
 
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: radial-gradient(circle, #d1d5db 0.8px, transparent 0.8px);
+  background-size: 24px 24px;
+  opacity: 0.32;
+}
+
 @media (min-width: 1024px) {
   body {
     font-size: 18px;
@@ -205,6 +216,11 @@ h3 {
   transform: translateY(0);
 }
 
+@keyframes heroEntrance {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -214,5 +230,11 @@ h3 {
     opacity: 1;
     transform: none;
     transition: none;
+  }
+
+  .hero-copy,
+  .hero-image {
+    animation: none !important;
+    opacity: 1 !important;
   }
 }

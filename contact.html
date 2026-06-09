@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="images/favicon.ico">
+<meta name="theme-color" content="#F4F1EA">
+<meta name="description" content="Contact Anthony Hinojosa for roles bridging industrial operations and emerging technology. Based in Corpus Christi, TX.">
 <title>Contact · Anthony Hinojosa</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -45,22 +48,27 @@
   <section class="section">
     <div class="container">
       <div class="contact-grid">
-        <form class="contact-form reveal" onsubmit="event.preventDefault(); this.innerHTML='<div class=\'eyebrow\' style=\'margin-bottom: 16px;\'>§ Message received</div><h3 style=\'font-family: var(--f-display); font-size: 40px; line-height: 1; letter-spacing: -0.02em;\'>Transmission logged. Expect a reply within 48 hours.</h3>';">
+        <form class="contact-form reveal" id="contact-form" action="https://formsubmit.co/anthonymhinojosa@gmail.com" method="POST">
+          <input type="hidden" name="_subject" value="New transmission · career site">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_next" value="" id="contact-next">
+          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
           <div class="field">
             <label for="name">Name</label>
-            <input type="text" id="name" required placeholder="e.g. Alex Rivera">
+            <input type="text" id="name" name="name" required placeholder="e.g. Alex Rivera">
           </div>
           <div class="field">
             <label for="email">Email</label>
-            <input type="email" id="email" required placeholder="alex@company.com">
+            <input type="email" id="email" name="email" required placeholder="alex@company.com">
           </div>
           <div class="field">
             <label for="org">Organization <span style="color: var(--ink-4);">(optional)</span></label>
-            <input type="text" id="org" placeholder="Company / team">
+            <input type="text" id="org" name="organization" placeholder="Company / team">
           </div>
           <div class="field">
             <label for="msg">Message</label>
-            <textarea id="msg" required placeholder="What's the context?"></textarea>
+            <textarea id="msg" name="message" required placeholder="What's the context?"></textarea>
           </div>
           <button type="submit" class="btn btn-primary">Send Transmission <span class="arrow">→</span></button>
         </form>
@@ -68,7 +76,7 @@
         <aside class="contact-side">
           <div class="item reveal">
             <div class="k">§ Direct</div>
-            <div class="v"><a href="mailto:anthony@example.com">anthony@example.com</a></div>
+            <div class="v"><a href="mailto:anthonymhinojosa@gmail.com">anthonymhinojosa@gmail.com</a></div>
           </div>
           <div class="item reveal">
             <div class="k">§ Station</div>
@@ -88,7 +96,7 @@
           </div>
           <div class="item reveal">
             <div class="k">§ Also</div>
-            <div class="v"><a href="#">LinkedIn →</a></div>
+            <div class="v"><a href="https://github.com/AnthonyHinojosa77" target="_blank" rel="noopener">GitHub →</a></div>
           </div>
         </aside>
       </div>
@@ -103,7 +111,7 @@
       <div><h4>Anthony Hinojosa</h4><p class="footer-name">Quality,<br>safety,<br>systems.</p></div>
       <div><h4>Site</h4><a href="index.html">Index</a><a href="about.html">About</a><a href="experience.html">Experience</a><a href="mindmap.html">Map</a><a href="projects.html">Projects</a></div>
       <div><h4>Credentials</h4><a href="certifications.html">Certifications</a><a href="skills.html">Skills</a><a href="resume.html">Resume (PDF)</a><a href="blog.html">Writing</a></div>
-      <div><h4>Contact</h4><a href="contact.html">Send a message</a><a href="mailto:anthony@example.com">anthony@example.com</a><a href="#">LinkedIn →</a></div>
+      <div><h4>Contact</h4><a href="contact.html">Send a message</a><a href="mailto:anthonymhinojosa@gmail.com">anthonymhinojosa@gmail.com</a><a href="https://github.com/AnthonyHinojosa77" target="_blank" rel="noopener">GitHub →</a></div>
     </div>
     <div class="footer-bottom">
       <span class="mono">© 2026 A. HINOJOSA · CORPUS CHRISTI, TX · <span data-clock>00:00:00 UTC</span></span>
@@ -113,5 +121,26 @@
 </footer>
 
 <script src="js/site.js"></script>
+<script>
+(function () {
+  // Redirect back to this page with ?sent=1 after FormSubmit delivers,
+  // computed at runtime so it works on any domain.
+  var next = document.getElementById('contact-next');
+  if (next) next.value = location.origin + location.pathname + '?sent=1';
+
+  // Returning from a successful submit: swap the form for the success state.
+  if (new URLSearchParams(location.search).get('sent') === '1') {
+    var form = document.getElementById('contact-form');
+    if (form) {
+      form.classList.add('in');
+      form.innerHTML =
+        '<div class="eyebrow" style="margin-bottom: 16px;">§ Message received</div>' +
+        '<h3 style="font-family: var(--f-display); font-size: 40px; line-height: 1; letter-spacing: -0.02em; margin-bottom: 16px;">Transmission logged.</h3>' +
+        '<p style="color: var(--ink-2); font-size: 17px; max-width: 44ch;">Your message is on its way. Expect a reply within 48 hours.</p>' +
+        '<a class="btn btn-secondary" href="index.html" style="margin-top: 24px;">Back to Index <span class="arrow">→</span></a>';
+    }
+  }
+})();
+</script>
 </body>
 </html>

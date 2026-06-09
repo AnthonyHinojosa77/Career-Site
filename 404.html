@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="images/favicon.ico">
+<meta name="theme-color" content="#F4F1EA">
+<title>404 · Anthony Hinojosa</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/system.css">
+<link rel="stylesheet" href="css/pages.css">
+<style>
+  .nf-wrap {
+    min-height: calc(100vh - var(--nav-h));
+    display: grid;
+    place-items: center;
+    padding: 80px 0;
+  }
+  .nf-card {
+    text-align: center;
+    max-width: 560px;
+    padding: 0 var(--gutter);
+  }
+  .nf-card .stamp {
+    font-family: var(--f-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--signal);
+    border: 1px solid var(--signal);
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 28px;
+  }
+  .nf-card h1 {
+    font-family: var(--f-display);
+    font-size: clamp(96px, 18vw, 180px);
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    margin: 0 0 20px;
+    color: var(--ink);
+  }
+  .nf-card h1 em { font-style: italic; color: var(--signal); }
+  .nf-card p {
+    color: var(--ink-2);
+    font-size: 17px;
+    line-height: 1.55;
+    margin: 0 0 32px;
+  }
+  .nf-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+</style>
+</head>
+<body data-theme="light" class="hv-editorial">
+
+<a class="skip" href="#main">Skip to main</a>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html">
+      <span class="dot"></span><strong>Hinojosa</strong>
+      <span class="slash">/</span><span>Career · 2026</span>
+    </a>
+    <nav class="nav-links">
+      <a class="nav-link" href="index.html">Index</a>
+      <a class="nav-link" href="about.html">About</a>
+      <a class="nav-link" href="experience.html">Experience</a>
+      <a class="nav-link" href="mindmap.html">Map</a>
+      <a class="nav-link" href="projects.html">Projects</a>
+      <a class="nav-link" href="certifications.html">Certs</a>
+      <a class="nav-cta" href="contact.html">Contact →</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="nf-wrap">
+    <div class="nf-card">
+      <span class="stamp">FILE NOT FOUND · ERR 404</span>
+      <h1>404<em>.</em></h1>
+      <p>This file isn't in the dossier. The page may have moved, or the address has a typo.</p>
+      <div class="nf-actions">
+        <a class="btn btn-primary" href="index.html">Back to Index <span class="arrow">→</span></a>
+        <a class="btn btn-secondary" href="mindmap.html">Open the Map</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script src="js/site.js"></script>
+</body>
+</html>

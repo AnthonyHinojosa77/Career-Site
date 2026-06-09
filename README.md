@@ -67,10 +67,17 @@ career-site/
 └── CLAUDE.md
 ```
 
-## Placeholder Checklist
+## Production Status
 
-- [ ] Wire the `contact.html` form to a real endpoint
-- [ ] Confirm `resume.pdf` is the current resume
+- [x] Contact form delivers via FormSubmit.co to anthonymhinojosa@gmail.com
+      (the very first submission triggers a one-time confirmation email from
+      FormSubmit; click it once and all future messages deliver automatically)
+- [x] Real email wired site-wide (footers, contact page)
+- [x] Resume PDF is the current 2026 resume
+- [x] Favicon, meta descriptions, robots.txt, styled 404 page
+- [x] No dead links; social link points to GitHub
+
+## Remaining (owner input needed)
+
+- [ ] Add a LinkedIn URL when ready (currently linking to GitHub)
 - [ ] Confirm certification dates (NREMT, OSHA 30, HAZWOPER)
-- [ ] Replace the placeholder email (`anthony@example.com`) and add a LinkedIn URL
-- [ ] Replace OG URLs with the production domain on all pages

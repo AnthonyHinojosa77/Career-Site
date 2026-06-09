@@ -1,144 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Contact Anthony Hinojosa. Reach out for opportunities in quality assurance, safety, technology integration, and industrial operations.">
-  <title>Contact | Anthony Hinojosa</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/global.css">
-  <link rel="stylesheet" href="css/components.css">
-  <link rel="stylesheet" href="css/pages.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact · Anthony Hinojosa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/system.css">
+<link rel="stylesheet" href="css/pages.css">
 </head>
-<body>
+<body data-theme="light" class="hv-editorial">
 
-  <a href="#main" class="skip-link">Skip to main content</a>
+<a class="skip" href="#main">Skip to main</a>
 
-  <!-- Header -->
-  <header class="site-header">
-    <div class="container nav-wrap">
-      <a href="index.html" class="brand">Anthony Hinojosa</a>
-      <nav class="nav-links" aria-label="Main navigation">
-        <a href="about.html" class="nav-link">About</a>
-        <a href="experience.html" class="nav-link">Experience</a>
-        <a href="projects.html" class="nav-link">Projects</a>
-        <a href="certifications.html" class="nav-link">Certifications</a>
-        <a href="blog.html" class="nav-link">Blog</a>
-        <a href="resume.html" class="nav-link">Resume</a>
-        <a href="contact.html" class="btn btn-primary" aria-current="page">Contact</a>
-      </nav>
-      <button class="menu-toggle" aria-label="Open menu" aria-expanded="false">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-      </button>
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html">
+      <span class="dot"></span><strong>Hinojosa</strong>
+      <span class="slash">/</span><span>Career · 2026</span>
+    </a>
+    <nav class="nav-links">
+      <a class="nav-link" href="index.html">Index</a>
+      <a class="nav-link" href="about.html">About</a>
+      <a class="nav-link" href="experience.html">Experience</a>
+      <a class="nav-link" href="mindmap.html">Map</a>
+      <a class="nav-link" href="projects.html">Projects</a>
+      <a class="nav-link" href="certifications.html">Certs</a>
+      <a class="nav-cta" href="contact.html" aria-current="page">Contact →</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="page-header">
+    <div class="container">
+      <div class="eyebrow reveal">§ 04 · File · Contact</div>
+      <h1 class="reveal">Open<br>transmission<em style="font-style: italic; color: var(--signal);">.</em></h1>
+      <p class="lede reveal">Role inquiries, collaborations, or a conversation about the industrial-AI crossover, inbox is open.</p>
     </div>
-  </header>
+  </section>
 
-  <!-- Mobile Menu -->
-  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
-    <div class="mobile-menu-panel">
-      <a href="about.html">About</a>
-      <a href="experience.html">Experience</a>
-      <a href="projects.html">Projects</a>
-      <a href="certifications.html">Certifications</a>
-      <a href="blog.html">Blog</a>
-      <a href="resume.html">Resume</a>
-      <a href="contact.html" class="is-active">Contact</a>
+  <section class="section">
+    <div class="container">
+      <div class="contact-grid">
+        <form class="contact-form reveal" onsubmit="event.preventDefault(); this.innerHTML='<div class=\'eyebrow\' style=\'margin-bottom: 16px;\'>§ Message received</div><h3 style=\'font-family: var(--f-display); font-size: 40px; line-height: 1; letter-spacing: -0.02em;\'>Transmission logged. Expect a reply within 48 hours.</h3>';">
+          <div class="field">
+            <label for="name">Name</label>
+            <input type="text" id="name" required placeholder="e.g. Alex Rivera">
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" required placeholder="alex@company.com">
+          </div>
+          <div class="field">
+            <label for="org">Organization <span style="color: var(--ink-4);">(optional)</span></label>
+            <input type="text" id="org" placeholder="Company / team">
+          </div>
+          <div class="field">
+            <label for="msg">Message</label>
+            <textarea id="msg" required placeholder="What's the context?"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Send Transmission <span class="arrow">→</span></button>
+        </form>
+
+        <aside class="contact-side">
+          <div class="item reveal">
+            <div class="k">§ Direct</div>
+            <div class="v"><a href="mailto:anthony@example.com">anthony@example.com</a></div>
+          </div>
+          <div class="item reveal">
+            <div class="k">§ Station</div>
+            <div class="v">Corpus Christi, TX</div>
+          </div>
+          <div class="item reveal">
+            <div class="k">§ Coordinates</div>
+            <div class="v mono" style="font-family: var(--f-mono); font-size: 14px; letter-spacing: 0.04em;">27.7172° N / 97.4022° W</div>
+          </div>
+          <div class="item reveal">
+            <div class="k">§ Availability</div>
+            <div class="v" style="color: var(--signal);">● Open · Q2 2026</div>
+          </div>
+          <div class="item reveal">
+            <div class="k">§ Expect Reply</div>
+            <div class="v">Within 48 hours</div>
+          </div>
+          <div class="item reveal">
+            <div class="k">§ Also</div>
+            <div class="v"><a href="#">LinkedIn →</a></div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div><h4>Anthony Hinojosa</h4><p class="footer-name">Quality,<br>safety,<br>systems.</p></div>
+      <div><h4>Site</h4><a href="index.html">Index</a><a href="about.html">About</a><a href="experience.html">Experience</a><a href="mindmap.html">Map</a><a href="projects.html">Projects</a></div>
+      <div><h4>Credentials</h4><a href="certifications.html">Certifications</a><a href="skills.html">Skills</a><a href="resume.html">Resume (PDF)</a><a href="blog.html">Writing</a></div>
+      <div><h4>Contact</h4><a href="contact.html">Send a message</a><a href="mailto:anthony@example.com">anthony@example.com</a><a href="#">LinkedIn →</a></div>
+    </div>
+    <div class="footer-bottom">
+      <span class="mono">© 2026 A. HINOJOSA · CORPUS CHRISTI, TX · <span data-clock>00:00:00 UTC</span></span>
+      <span class="mono">BUILT ON PAPER &amp; INK</span>
     </div>
   </div>
+</footer>
 
-  <main id="main">
-
-    <!-- Page Header -->
-    <section class="page-header">
-      <div class="container">
-        <h1>Get in Touch</h1>
-        <p>Have a question or want to connect? I'd like to hear from you.</p>
-      </div>
-    </section>
-
-    <!-- Contact Split -->
-    <section class="section">
-      <div class="container split">
-
-        <!-- Left: Contact Form -->
-        <div>
-          <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" id="contact-form" class="form-grid">
-
-            <div class="form-field">
-              <label for="name">Name</label>
-              <input type="text" id="name" name="name" required aria-required="true">
-              <span class="field-error">Please enter your name.</span>
-            </div>
-
-            <div class="form-field">
-              <label for="email">Email</label>
-              <input type="email" id="email" name="email" required aria-required="true">
-              <span class="field-error">Please enter a valid email.</span>
-            </div>
-
-            <div class="form-field">
-              <label for="subject">Subject</label>
-              <input type="text" id="subject" name="subject" required aria-required="true">
-              <span class="field-error">Please enter a subject.</span>
-            </div>
-
-            <div class="form-field">
-              <label for="message">Message</label>
-              <textarea id="message" name="message" rows="5" required aria-required="true"></textarea>
-              <span class="field-error">Please enter a message.</span>
-            </div>
-
-            <button type="submit" class="btn btn-primary">Send Message</button>
-            <p class="form-status"></p>
-
-          </form>
-        </div>
-
-        <!-- Right: Contact Info -->
-        <div>
-          <div class="card">
-            <h3>Contact Information</h3>
-            <ul class="info-list">
-              <li>
-                <strong>Email</strong>
-                <a href="mailto:tonytonejosa.ah@gmail.com">tonytonejosa.ah@gmail.com</a>
-              </li>
-              <li>
-                <strong>Location</strong>
-                Corpus Christi, TX
-              </li>
-              <li>
-                <strong>Availability</strong>
-                Open to opportunities in quality assurance, safety, technology integration, and industrial operations.
-              </li>
-            </ul>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-  </main>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container footer-wrap">
-      <span><strong>Anthony Hinojosa</strong></span>
-      <nav class="footer-nav" aria-label="Footer navigation">
-        <a href="about.html">About</a>
-        <a href="experience.html">Experience</a>
-        <a href="projects.html">Projects</a>
-        <a href="certifications.html">Certifications</a>
-        <a href="blog.html">Blog</a>
-        <a href="resume.html">Resume</a>
-        <a href="contact.html">Contact</a>
-      </nav>
-      <span class="muted" style="font-size: 0.85em;">&copy; 2026 Anthony Hinojosa</span>
-    </div>
-  </footer>
-
-  <script src="js/main.js"></script>
+<script src="js/site.js"></script>
 </body>
 </html>

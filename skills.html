@@ -1,662 +1,200 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Technical Skills | Anthony Hinojosa, NREMT</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <style>
-        *, *::before, *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --white: #ffffff;
-            --gray-light: #F9FAFB;
-            --cream: #faf8f5;
-            --cream-dark: #f5f2ed;
-            --parchment: #eae6df;
-            --warm-gray: #d4cfc6;
-            --earth-light: #b8a89a;
-            --earth: #8b7355;
-            --earth-dark: #6b5344;
-            --burgundy: #722f37;
-            --burgundy-light: #8b3a42;
-            --ink: #2c2416;
-            --ink-light: #4a3f2f;
-            --ink-muted: #6b6156;
-            --text-body: #3d352a;
-            --text-secondary: #5c534a;
-            --border: #d4cfc6;
-            --border-dark: #b8a89a;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--white);
-            color: var(--text-body);
-            line-height: 1.7;
-            font-size: 17px;
-            font-weight: 400;
-            min-height: 100vh;
-            position: relative;
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-            opacity: 0.25;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-        }
-
-        body > * {
-            position: relative;
-            z-index: 1;
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
-            font-weight: 600;
-            color: var(--ink);
-            line-height: 1.3;
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            background: var(--white);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .nav-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 1.25rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-logo {
-            font-family: 'Cormorant Garamond', Georgia, serif;
-            font-weight: 700;
-            font-size: 1.35rem;
-            color: var(--ink);
-            text-decoration: none;
-            letter-spacing: 0.02em;
-        }
-
-        .nav-logo span {
-            color: var(--border-dark);
-            font-weight: 400;
-            margin: 0 0.25rem;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            letter-spacing: 0.03em;
-            text-transform: uppercase;
-            transition: color 0.2s ease;
-            position: relative;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: var(--burgundy);
-            transition: width 0.2s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--burgundy);
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .nav-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            padding: 5px;
-        }
-
-        .nav-toggle span {
-            width: 22px;
-            height: 1.5px;
-            background: var(--ink);
-            transition: all 0.3s ease;
-        }
-
-        /* Page Header */
-        .page-header {
-            padding: 10rem 2rem 4rem;
-            text-align: center;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .page-header h1 {
-            font-size: clamp(2.5rem, 5vw, 3.5rem);
-            font-weight: 400;
-            margin-bottom: 1rem;
-        }
-
-        .page-header p {
-            font-family: 'Cormorant Garamond', Georgia, serif;
-            font-size: 1.25rem;
-            color: var(--text-secondary);
-            font-style: italic;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-top: 2rem;
-            color: var(--burgundy);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            letter-spacing: 0.03em;
-            text-transform: uppercase;
-            transition: color 0.2s ease;
-        }
-
-        .back-link:hover {
-            color: var(--burgundy-light);
-        }
-
-        .back-link svg {
-            width: 16px;
-            height: 16px;
-        }
-
-        /* Skills Content */
-        .skills-content {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-        }
-
-        .skill-section {
-            margin-bottom: 5rem;
-            scroll-margin-top: 100px;
-        }
-
-        .skill-section:last-child {
-            margin-bottom: 0;
-        }
-
-        .skill-header {
-            margin-bottom: 2.5rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .skill-number {
-            font-family: 'Cormorant Garamond', Georgia, serif;
-            font-size: 0.9rem;
-            color: var(--earth-light);
-            font-style: italic;
-            margin-bottom: 0.5rem;
-        }
-
-        .skill-header h2 {
-            font-size: 2rem;
-            font-weight: 500;
-            margin-bottom: 0.75rem;
-        }
-
-        .skill-header p {
-            color: var(--text-secondary);
-            font-size: 1.05rem;
-        }
-
-        .skill-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
-
-        .skill-tag {
-            font-size: 0.75rem;
-            padding: 0.35rem 0.75rem;
-            background: var(--parchment);
-            color: var(--ink-muted);
-            font-weight: 500;
-            letter-spacing: 0.02em;
-        }
-
-        /* STAR Story */
-        .star-story {
-            background: var(--white);
-            border: 1px solid var(--border);
-            padding: 2.5rem;
-        }
-
-        .star-story h3 {
-            font-size: 1.25rem;
-            font-weight: 500;
-            margin-bottom: 2rem;
-            color: var(--burgundy);
-        }
-
-        .star-item {
-            margin-bottom: 2rem;
-        }
-
-        .star-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .star-label {
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--burgundy);
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .star-label::before {
-            content: '';
-            width: 20px;
-            height: 1px;
-            background: var(--burgundy);
-        }
-
-        .star-item p {
-            color: var(--text-body);
-            font-size: 1rem;
-            line-height: 1.8;
-            padding-left: 1.75rem;
-        }
-
-        .placeholder {
-            color: var(--text-secondary);
-            font-style: italic;
-        }
-
-        /* Footer */
-        footer {
-            padding: 3rem 2rem;
-            text-align: center;
-            border-top: 1px solid var(--border);
-            background: transparent;
-        }
-
-        .ornament {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-            margin: 4rem 0;
-            color: var(--border-dark);
-        }
-
-        .ornament::before,
-        .ornament::after {
-            content: '';
-            width: 60px;
-            height: 1px;
-            background: var(--border);
-        }
-
-        .ornament span {
-            font-family: 'Cormorant Garamond', Georgia, serif;
-            font-size: 1.5rem;
-            line-height: 1;
-        }
-
-        footer p {
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-            letter-spacing: 0.05em;
-        }
-
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                flex-direction: column;
-                background: var(--white);
-                border-bottom: 1px solid var(--border);
-                padding: 1.5rem 2rem;
-                gap: 1.25rem;
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .nav-toggle {
-                display: flex;
-            }
-
-            .page-header {
-                padding: 8rem 1.5rem 3rem;
-            }
-
-            .skills-content {
-                padding: 3rem 1.5rem;
-            }
-
-            .star-story {
-                padding: 1.75rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .page-header h1 {
-                font-size: 2rem;
-            }
-
-            .skill-header h2 {
-                font-size: 1.5rem;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skills · Anthony Hinojosa</title>
+<meta name="description" content="Technical skill domains for Anthony Hinojosa, each demonstrated with a real STAR story drawn from active duty on the Gulf Coast.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/system.css">
+<link rel="stylesheet" href="css/pages.css">
+<style>
+  .skill-item {
+    padding: 40px 0;
+    border-top: var(--hair);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .skill-item:first-of-type { border-top: var(--hair-dark); }
+  .skill-item:last-of-type { border-bottom: var(--hair-dark); }
+  @media (min-width: 900px) {
+    .skill-item { grid-template-columns: 180px 1fr auto; gap: 48px; align-items: start; }
+  }
+  .skill-item .sk-meta { font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--signal); padding-top: 6px; }
+  .skill-item .sk-meta .yr { display: block; color: var(--ink-3); margin-top: 6px; }
+  .skill-item h3 {
+    font-family: var(--f-display);
+    font-size: clamp(26px, 3vw, 36px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin: 0 0 12px;
+  }
+  .skill-item p { color: var(--ink-2); font-size: 15.5px; line-height: 1.6; margin: 0 0 16px; max-width: 60ch; }
+  .skill-item .tag-row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .skill-item .sk-cta { align-self: center; }
+  .sk-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ink); border: 1px solid var(--ink); padding: 12px 16px; white-space: nowrap;
+    transition: background 0.15s, color 0.15s;
+  }
+  .sk-link:hover { background: var(--ink); color: var(--paper); }
+  .sk-link .arrow { color: var(--signal); transition: transform 0.15s; }
+  .sk-link:hover .arrow { transform: translateX(3px); }
+</style>
 </head>
-<body>
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-container">
-            <a href="index.html" class="nav-logo">Anthony Hinojosa <span>|</span> Quality & Safety</a>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="index.html#about">About</a></li>
-                <li><a href="index.html#skills">Skills</a></li>
-                <li><a href="index.html#certifications">Certifications</a></li>
-                <li><a href="index.html#experience">Experience</a></li>
-                <li><a href="index.html#contact">Contact</a></li>
-            </ul>
-            <div class="nav-toggle" id="navToggle" onclick="toggleNav()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
+<body data-theme="light" class="hv-editorial">
+
+<a class="skip" href="#main">Skip to main</a>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html">
+      <span class="dot"></span><strong>Hinojosa</strong>
+      <span class="slash">/</span><span>Career · 2026</span>
+    </a>
+    <nav class="nav-links">
+      <a class="nav-link" href="index.html">Index</a>
+      <a class="nav-link" href="about.html">About</a>
+      <a class="nav-link" href="experience.html">Experience</a>
+      <a class="nav-link" href="mindmap.html">Map</a>
+      <a class="nav-link" href="projects.html">Projects</a>
+      <a class="nav-link" href="certifications.html">Certs</a>
+      <a class="nav-cta" href="contact.html">Contact →</a>
     </nav>
+  </div>
+</header>
 
-    <!-- Page Header -->
-    <header class="page-header">
-        <h1>Technical Skills</h1>
-        <p>Detailed examples demonstrating expertise through real-world applications</p>
-        <a href="index.html#skills" class="back-link">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-            Back to Overview
-        </a>
-    </header>
+<main id="main">
 
-    <!-- Skills Content -->
-    <main class="skills-content">
+  <section class="page-header">
+    <div class="container">
+      <div class="eyebrow reveal">§ 11 · File · Skill Domains</div>
+      <h1 class="reveal">Six skills,<br>six stories<em style="font-style: italic; color: var(--signal);">.</em></h1>
+      <p class="lede reveal">Every skill domain below is demonstrated with a real STAR story, not a bullet list. Open the interactive <a href="mindmap.html" style="color: var(--signal); border-bottom: 1px solid var(--signal);">experience map</a> to explore them visually.</p>
+    </div>
+  </section>
 
-        <!-- Skill 1: Analytical Testing -->
-        <section id="analytical-testing" class="skill-section">
-            <div class="skill-header">
-                <div class="skill-number">i.</div>
-                <h2>Analytical Testing</h2>
-                <p>Proficient in a wide range of analytical instrumentation for petrochemical quality assurance.</p>
-                <div class="skill-tags">
-                    <span class="skill-tag">HPLC</span>
-                    <span class="skill-tag">GC</span>
-                    <span class="skill-tag">FTIR</span>
-                    <span class="skill-tag">UV-Vis</span>
-                    <span class="skill-tag">X-ray</span>
-                    <span class="skill-tag">Melt Index</span>
-                </div>
-            </div>
-            <div class="star-story">
-                <h3>Demonstrating This Skill</h3>
-                <div class="star-item">
-                    <div class="star-label">Situation</div>
-                    <p class="placeholder">[Describe the context and background. What was happening? What challenges existed? Example: "During a high-volume production period at ExxonMobil, we encountered inconsistent quality readings on polymer samples that were causing delays in product release..."]</p>
-                </div>
-                <div class="star-item">
-                    <div class="star-label">Task</div>
-                    <p class="placeholder">[What was your specific responsibility? What were you asked or expected to do? Example: "I was tasked with identifying the source of the inconsistencies and developing a more reliable testing protocol..."]</p>
-                </div>
-                <div class="star-item">
-                    <div class="star-label">Action</div>
-                    <p class="placeholder">[What specific steps did you take? Be detailed about YOUR contributions. Example: "I systematically reviewed our HPLC calibration procedures, identified a drift in the baseline readings, recalibrated the instrument using fresh standards, and implemented a daily verification check..."]</p>
-                </div>
-                <div class="star-item">
-                    <div class="star-label">Result</div>
-                    <p class="placeholder">[What was the outcome? Quantify if possible. Example: "The new protocol reduced testing variability by 40% and eliminated the product release delays, saving approximately 8 hours per week in retesting time..."]</p>
-                </div>
-            </div>
-        </section>
+  <section class="section">
+    <div class="container">
 
-        <!-- Skill 2: Petrochemical Product Quality -->
-        <section id="petrochemical-quality" class="skill-section">
-            <div class="skill-header">
-                <div class="skill-number">ii.</div>
-                <h2>Petrochemical Product Quality</h2>
-                <p>Deep expertise in quality testing for polymers, glycols, olefins, crude oil, and refined products.</p>
-                <div class="skill-tags">
-                    <span class="skill-tag">Polymers</span>
-                    <span class="skill-tag">Glycols</span>
-                    <span class="skill-tag">Olefins</span>
-                    <span class="skill-tag">Wastewater</span>
-                </div>
-            </div>
-            <div class="star-story">
-                <h3>Demonstrating This Skill</h3>
-                <div class="star-item">
-                    <div class="star-label">Situation</div>
-                    <p class="placeholder">[Describe the context and background. What was happening? What challenges existed?]</p>
-                </div>
-                <div class="star-item">
-                    <div class="star-label">Task</div>
-                    <p class="placeholder">[What was your specific responsibility? What were you asked or expected to do?]</p>
-                </div>
-                <div class="star-item">
-                    <div class="star-label">Action</div>
-                    <p class="placeholder">[What specific steps did you take? Be detailed about YOUR contributions.]</p>
-                </div>
-                <div class="star-item">
-                    <div class="star-label">Result</div>
-                    <p class="placeholder">[What was the outcome? Quantify if possible.]</p>
-                </div>
-            </div>
-        </section>
+      <div class="skill-item reveal">
+        <div class="sk-meta">CAP-01 / Analytical<span class="yr">Since 2018</span></div>
+        <div>
+          <h3>Analytical Testing &amp; Lab Ops</h3>
+          <p>Day to day analytical work across polymer, glycol, and hydrocarbon streams. Running instrumentation, troubleshooting method drift, and releasing results against customer and internal specs.</p>
+          <div class="tag-row">
+            <span class="tag">HPLC · GC</span><span class="tag">FTIR · UV/Vis</span><span class="tag">Colorimetry</span><span class="tag">Melt Index · XRF</span><span class="tag">LIMS</span>
+          </div>
+        </div>
+        <div class="sk-cta"><a class="sk-link" href="star.html?domain=analytical">STAR story <span class="arrow">→</span></a></div>
+      </div>
 
-        <!-- Skill 3: Quality Systems -->
-        <section id="quality-systems" class="skill-section">
-            <div class="skill-header">
-                <div class="skill-number">iii.</div>
-                <h2>Quality Systems</h2>
-                <p>Strong background in sample management, QC standards, audit preparation, and equipment maintenance.</p>
-                <div class="skill-tags">
-                    <span class="skill-tag">Sample Management</span>
-                    <span class="skill-tag">5S</span>
-                    <span class="skill-tag">Audit Prep</span>
-                </div>
-            </div>
-            <div class="star-story">
-                <h3>Demonstrating This Skill</h3>
-                <div class="star-item">
-                    <div class="star-label">Situation</div>
-                    <p class="placeholder">[Describe the context and background. What was happening? What challenges existed?]</p>
-                </div>
-                <div class="star-item">
-                    <div class="star-label">Task</div>
-                    <p class="placeholder">[What was your specific responsibility? What were you asked or expected to do?]</p>
-                </div>
-                <div class="star-item">
-                    <div class="star-label">Action</div>
-                    <p class="placeholder">[What specific steps did you take? Be detailed about YOUR contributions.]</p>
-                </div>
-                <div class="star-item">
-                    <div class="star-label">Result</div>
-                    <p class="placeholder">[What was the outcome? Quantify if possible.]</p>
-                </div>
-            </div>
-        </section>
+      <div class="skill-item reveal">
+        <div class="sk-meta">CAP-02 / Quality<span class="yr">2018 → Present</span></div>
+        <div>
+          <h3>Product Grading &amp; Compliance</h3>
+          <p>Grading finished product against release specs. Polymer QA on polyethylene and polypropylene grades, glycol grading for fiber and industrial customers, hydrocarbon grading across crude and finished fuels.</p>
+          <div class="tag-row">
+            <span class="tag">Polymer QA</span><span class="tag">Glycol Grading</span><span class="tag">Crude · ULSD · Jet</span><span class="tag">Custody Transfer</span>
+          </div>
+        </div>
+        <div class="sk-cta"><a class="sk-link" href="star.html?domain=quality">STAR story <span class="arrow">→</span></a></div>
+      </div>
 
-        <!-- Skill 4: Operations Support -->
-        <section id="operations-support" class="skill-section">
-            <div class="skill-header">
-                <div class="skill-number">iv.</div>
-                <h2>Operations Support</h2>
-                <p>Lab–operations coordination, product release decisions, and turnaround/outage support.</p>
-                <div class="skill-tags">
-                    <span class="skill-tag">Coordination</span>
-                    <span class="skill-tag">Product Release</span>
-                    <span class="skill-tag">Turnarounds</span>
-                </div>
-            </div>
-            <div class="star-story">
-                <h3>Demonstrating This Skill</h3>
-                <div class="star-item">
-                    <div class="star-label">Situation</div>
-                    <p class="placeholder">[Describe the context and background. What was happening? What challenges existed?]</p>
-                </div>
-                <div class="star-item">
-                    <div class="star-label">Task</div>
-                    <p class="placeholder">[What was your specific responsibility? What were you asked or expected to do?]</p>
-                </div>
-                <div class="star-item">
-                    <div class="star-label">Action</div>
-                    <p class="placeholder">[What specific steps did you take? Be detailed about YOUR contributions.]</p>
-                </div>
-                <div class="star-item">
-                    <div class="star-label">Result</div>
-                    <p class="placeholder">[What was the outcome? Quantify if possible.]</p>
-                </div>
-            </div>
-        </section>
+      <div class="skill-item reveal">
+        <div class="sk-meta">CAP-03 / Response<span class="yr">Active</span></div>
+        <div>
+          <h3>Safety &amp; Emergency Response</h3>
+          <p>Credentialed emergency medical technician and industrial responder, trained for refinery fire, hazmat, confined space rescue, and medical standby on hot work. Active member of the plant emergency response team.</p>
+          <div class="tag-row">
+            <span class="tag sig">NREMT</span><span class="tag">HazMat Ops</span><span class="tag">Fire &amp; Rescue</span><span class="tag">Air Monitoring</span>
+          </div>
+        </div>
+        <div class="sk-cta"><a class="sk-link" href="star.html?domain=response">STAR story <span class="arrow">→</span></a></div>
+      </div>
 
-        <!-- Skill 5: SHE & Emergency Response -->
-        <section id="safety-emergency" class="skill-section">
-            <div class="skill-header">
-                <div class="skill-number">v.</div>
-                <h2>SHE & Emergency Response</h2>
-                <p>Industrial firefighting, HazMat awareness and operations, air monitoring, rescue, and NREMT certified.</p>
-                <div class="skill-tags">
-                    <span class="skill-tag">HazMat</span>
-                    <span class="skill-tag">Firefighting</span>
-                    <span class="skill-tag">Air Monitoring</span>
-                    <span class="skill-tag">NREMT</span>
-                </div>
-            </div>
-            <div class="star-story">
-                <h3>Demonstrating This Skill</h3>
-                <div class="star-item">
-                    <div class="star-label">Situation</div>
-                    <p class="placeholder">[Describe the context and background. What was happening? What challenges existed?]</p>
-                </div>
-                <div class="star-item">
-                    <div class="star-label">Task</div>
-                    <p class="placeholder">[What was your specific responsibility? What were you asked or expected to do?]</p>
-                </div>
-                <div class="star-item">
-                    <div class="star-label">Action</div>
-                    <p class="placeholder">[What specific steps did you take? Be detailed about YOUR contributions.]</p>
-                </div>
-                <div class="star-item">
-                    <div class="star-label">Result</div>
-                    <p class="placeholder">[What was the outcome? Quantify if possible.]</p>
-                </div>
-            </div>
-        </section>
+      <div class="skill-item reveal">
+        <div class="sk-meta">CAP-04 / Field<span class="yr">Multi-year</span></div>
+        <div>
+          <h3>Field Ops &amp; Flight</h3>
+          <p>Hands on field work, mobile equipment, aerial inspection. Part 107 remote pilot for drone inspections of structures and elevated assets; certified on multiple material handling and lift platforms.</p>
+          <div class="tag-row">
+            <span class="tag sig">FAA Part 107</span><span class="tag">Forklift · Skid</span><span class="tag">Scissor · Man Lift</span><span class="tag">Blasting · Fireproof</span>
+          </div>
+        </div>
+        <div class="sk-cta"><a class="sk-link" href="star.html?domain=field">STAR story <span class="arrow">→</span></a></div>
+      </div>
 
-        <!-- Skill 6: Team Leadership -->
-        <section id="team-leadership" class="skill-section">
-            <div class="skill-header">
-                <div class="skill-number">vi.</div>
-                <h2>Team Leadership</h2>
-                <p>Night-shift lab point of contact, step-up responsibilities, permit writing, and training support.</p>
-                <div class="skill-tags">
-                    <span class="skill-tag">POC</span>
-                    <span class="skill-tag">Training</span>
-                    <span class="skill-tag">Permits</span>
-                </div>
-            </div>
-            <div class="star-story">
-                <h3>Demonstrating This Skill</h3>
-                <div class="star-item">
-                    <div class="star-label">Situation</div>
-                    <p class="placeholder">[Describe the context and background. What was happening? What challenges existed?]</p>
-                </div>
-                <div class="star-item">
-                    <div class="star-label">Task</div>
-                    <p class="placeholder">[What was your specific responsibility? What were you asked or expected to do?]</p>
-                </div>
-                <div class="star-item">
-                    <div class="star-label">Action</div>
-                    <p class="placeholder">[What specific steps did you take? Be detailed about YOUR contributions.]</p>
-                </div>
-                <div class="star-item">
-                    <div class="star-label">Result</div>
-                    <p class="placeholder">[What was the outcome? Quantify if possible.]</p>
-                </div>
-            </div>
-        </section>
+      <div class="skill-item reveal">
+        <div class="sk-meta">CAP-05 / Liaison<span class="yr">Nights · TAR</span></div>
+        <div>
+          <h3>Leadership &amp; Coordination</h3>
+          <p>Trusted to run the shift when supervisors are off site. Single point of contact on nights, writes and verifies permits, coordinates between operations, safety, and contractors.</p>
+          <div class="tag-row">
+            <span class="tag">Night-Shift POC</span><span class="tag">Step-Up Supervisor</span><span class="tag">Permit Writing</span><span class="tag">Safety Coach</span>
+          </div>
+        </div>
+        <div class="sk-cta"><a class="sk-link" href="star.html?domain=liaison">STAR story <span class="arrow">→</span></a></div>
+      </div>
 
-    </main>
+      <div class="skill-item reveal">
+        <div class="sk-meta">CAP-06 / In Progress<span class="yr">Target 2028</span></div>
+        <div>
+          <h3>CS &amp; AI/ML</h3>
+          <p>Active computer science degree through WGU, focus on AI, ML, and data systems. Bridging a decade of plant and lab floor context into predictive quality and industrial software.</p>
+          <div class="tag-row">
+            <span class="tag">Programming</span><span class="tag">AI &amp; ML</span><span class="tag">Data Systems</span><span class="tag sig">WGU · 2028</span>
+          </div>
+        </div>
+        <div class="sk-cta"><a class="sk-link" href="star.html?domain=cs">STAR story <span class="arrow">→</span></a></div>
+      </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="ornament"><span>&sect;</span></div>
-        <p>&copy; 2025 Anthony Hinojosa. All rights reserved.</p>
-    </footer>
+    </div>
+  </section>
 
-    <script>
-        // Mobile navigation toggle
-        function toggleNav() {
-            const navLinks = document.getElementById('navLinks');
-            navLinks.classList.toggle('active');
-        }
+  <section class="cta-band">
+    <div class="container">
+      <div class="cta-grid">
+        <div>
+          <div class="eyebrow reveal" style="color: var(--paper-3);">§ Explore</div>
+          <h2 class="reveal">See how the<br>skills connect.</h2>
+          <p class="lede reveal">The interactive experience map lets you expand each domain and drill into the skills and stories behind it.</p>
+          <div class="hero-actions reveal">
+            <a class="btn btn-primary" href="mindmap.html">Open the Map <span class="arrow">→</span></a>
+            <a class="btn btn-secondary" href="projects.html">Case Studies</a>
+          </div>
+        </div>
+        <div class="cta-readout">
+          <div><span class="k">DOMAINS</span><span class="v">6 ACTIVE</span></div>
+          <div><span class="k">STORIES</span><span class="v">6 STAR</span></div>
+          <div><span class="k">CERTS</span><span class="v">4 ACTIVE</span></div>
+          <div><span class="k">STATUS</span><span class="v" style="color: var(--signal);">● OPEN</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        // Close mobile nav when clicking a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                document.getElementById('navLinks').classList.remove('active');
-            });
-        });
-    </script>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div><h4>Anthony Hinojosa</h4><p class="footer-name">Quality,<br>safety,<br>systems.</p></div>
+      <div><h4>Site</h4><a href="index.html">Index</a><a href="about.html">About</a><a href="experience.html">Experience</a><a href="mindmap.html">Map</a><a href="projects.html">Projects</a></div>
+      <div><h4>Credentials</h4><a href="certifications.html">Certifications</a><a href="skills.html">Skills</a><a href="resume.html">Resume (PDF)</a><a href="blog.html">Writing</a></div>
+      <div><h4>Contact</h4><a href="contact.html">Send a message</a><a href="mailto:anthony@example.com">anthony@example.com</a><a href="#">LinkedIn →</a></div>
+    </div>
+    <div class="footer-bottom">
+      <span class="mono">© 2026 A. HINOJOSA · CORPUS CHRISTI, TX · <span data-clock>00:00:00 UTC</span></span>
+      <span class="mono">BUILT ON PAPER &amp; INK</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/site.js"></script>
 </body>
 </html>

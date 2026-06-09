@@ -1,13 +1,15 @@
-# Anthony Hinojosa — Career Site
+# Anthony Hinojosa, Career Site
 
 Static personal career website built with HTML5, CSS3, and vanilla JavaScript (ES6+).
+Design system: "Industrial Precision", a paper/ink palette with a single signal-orange
+accent, editorial serif display, and mono technical readouts.
 
 ## Tech Stack
 
-- **HTML5** — Semantic markup, WCAG 2.1 AA accessible
-- **CSS3** — Custom properties, responsive grid, mobile-first
-- **JavaScript** — Vanilla ES6+, no frameworks or dependencies
-- **Font** — Inter via Google Fonts
+- **HTML5**, semantic markup, WCAG 2.1 AA accessible
+- **CSS3**, custom properties, responsive grid, light/dark themes
+- **JavaScript**, vanilla ES6+, no frameworks or dependencies
+- **Fonts**, Instrument Serif, Inter, and JetBrains Mono via Google Fonts
 
 ## Run / Use
 
@@ -22,15 +24,18 @@ python3 -m http.server 8000
 
 | Page | File | Description |
 |------|------|-------------|
-| Home | `index.html` | Hero, stats, capability previews, blog preview |
+| Home | `index.html` | Hero, ticker, stats, capability index, featured work |
 | About | `about.html` | Narrative, headshot, leadership philosophy |
-| Experience | `experience.html` | Capability cards, leadership section, work history |
-| Projects | `projects.html` | 5 STAR-format case studies with category filter |
+| Experience | `experience.html` | Capability cards, timeline, work history |
+| Map | `mindmap.html` | Interactive experience map with expand/collapse + camera pan |
+| STAR Story | `star.html` | STAR story template, one per domain via `?domain=` |
+| Projects | `projects.html` | STAR-format case studies with category filter |
 | Certifications | `certifications.html` | Active certs + in-progress education |
-| Blog | `blog.html` | Blog listing with category filter |
+| Skills | `skills.html` | Six skill domains, each linking to its STAR story |
+| Writing | `blog.html` | Writing listing with category filter |
 | Blog Post | `blog-post.html` | Full article template |
 | Resume | `resume.html` | Web resume + PDF download |
-| Contact | `contact.html` | Formspree contact form + info |
+| Contact | `contact.html` | Contact form + info |
 
 ## Structure
 
@@ -39,18 +44,22 @@ career-site/
 ├── index.html
 ├── about.html
 ├── experience.html
+├── mindmap.html
+├── star.html
 ├── projects.html
 ├── certifications.html
+├── skills.html
 ├── blog.html
 ├── blog-post.html
 ├── resume.html
 ├── contact.html
 ├── css/
-│   ├── global.css
-│   ├── components.css
-│   └── pages.css
+│   ├── system.css      # Design tokens, reset, shared components
+│   └── pages.css       # Tweaks panel + page-specific styles
 ├── js/
-│   └── main.js
+│   ├── site.js         # Reveal, counters, theme/tweaks, filters, clock
+│   ├── mindmap-data.js # Experience-map data
+│   └── mindmap.js      # Experience-map engine
 ├── images/
 │   └── headshot.jpg
 ├── resume.pdf
@@ -60,10 +69,8 @@ career-site/
 
 ## Placeholder Checklist
 
-- [ ] Replace Formspree endpoint in `contact.html`: `YOUR_FORM_ID`
-- [ ] Replace `resume.pdf` with actual resume PDF
-- [ ] Add favicon at `images/favicon.ico`
+- [ ] Wire the `contact.html` form to a real endpoint
+- [ ] Confirm `resume.pdf` is the current resume
 - [ ] Confirm certification dates (NREMT, OSHA 30, HAZWOPER)
-- [ ] Fill metric placeholders in `projects.html` case studies
-- [ ] Replace OG URLs with production domain on all pages
-- [ ] Add LinkedIn URL if desired
+- [ ] Replace the placeholder email (`anthony@example.com`) and add a LinkedIn URL
+- [ ] Replace OG URLs with the production domain on all pages

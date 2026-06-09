@@ -1,225 +1,231 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Resume of Anthony Hinojosa: industrial laboratory technician, NREMT, and emergency responder with extensive experience in petrochemical operations, product quality, and safety.">
-  <title>Resume | Anthony Hinojosa</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/global.css">
-  <link rel="stylesheet" href="css/components.css">
-  <link rel="stylesheet" href="css/pages.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resume · Anthony Hinojosa</title>
+<meta name="description" content="Resume of Anthony Hinojosa: industrial laboratory technician, NREMT, and emergency responder across petrochemical operations, product quality, and safety.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/system.css">
+<link rel="stylesheet" href="css/pages.css">
+<style>
+  .download-row {
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 20px;
+    padding: 24px 26px;
+    border: 1px solid var(--ink);
+    background: var(--paper-2);
+    margin-bottom: 48px;
+  }
+  .download-row .mono { color: var(--ink-3); }
+  .resume-block { margin-bottom: 56px; }
+  .resume-block:last-child { margin-bottom: 0; }
+  .resume-block > h2 {
+    font-family: var(--f-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin: 0 0 20px;
+    padding-bottom: 12px;
+    border-bottom: var(--hair);
+    display: flex; justify-content: space-between; align-items: baseline;
+  }
+  .resume-block > h2 .num { color: var(--signal); }
+  .resume-summary {
+    font-family: var(--f-display);
+    font-size: clamp(20px, 2.4vw, 28px);
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    max-width: 60ch;
+    margin: 0;
+  }
+  .tag-row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .resume-list { max-width: 72ch; }
+  .resume-list li {
+    position: relative; padding-left: 20px; margin-top: 8px;
+    font-size: 15px; color: var(--ink-2); line-height: 1.55;
+  }
+  .resume-list li::before {
+    content: ""; position: absolute; left: 0; top: 10px;
+    width: 10px; height: 1px; background: var(--signal);
+  }
+</style>
 </head>
-<body>
+<body data-theme="light" class="hv-editorial">
 
-  <a href="#main" class="skip-link">Skip to main content</a>
+<a class="skip" href="#main">Skip to main</a>
 
-  <!-- Header -->
-  <header class="site-header">
-    <div class="container nav-wrap">
-      <a href="index.html" class="brand">Anthony Hinojosa</a>
-      <nav class="nav-links" aria-label="Main navigation">
-        <a href="about.html" class="nav-link">About</a>
-        <a href="experience.html" class="nav-link">Experience</a>
-        <a href="projects.html" class="nav-link">Projects</a>
-        <a href="certifications.html" class="nav-link">Certifications</a>
-        <a href="blog.html" class="nav-link">Blog</a>
-        <a href="resume.html" class="nav-link" aria-current="page">Resume</a>
-        <a href="contact.html" class="btn btn-primary">Contact</a>
-      </nav>
-      <button class="menu-toggle" aria-label="Open menu" aria-expanded="false">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-      </button>
-    </div>
-  </header>
-
-  <!-- Mobile Menu -->
-  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
-    <div class="mobile-menu-panel">
-      <a href="about.html">About</a>
-      <a href="experience.html">Experience</a>
-      <a href="projects.html">Projects</a>
-      <a href="certifications.html">Certifications</a>
-      <a href="blog.html">Blog</a>
-      <a href="resume.html" class="is-active">Resume</a>
-      <a href="contact.html">Contact</a>
-    </div>
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html">
+      <span class="dot"></span><strong>Hinojosa</strong>
+      <span class="slash">/</span><span>Career · 2026</span>
+    </a>
+    <nav class="nav-links">
+      <a class="nav-link" href="index.html">Index</a>
+      <a class="nav-link" href="about.html">About</a>
+      <a class="nav-link" href="experience.html">Experience</a>
+      <a class="nav-link" href="mindmap.html">Map</a>
+      <a class="nav-link" href="projects.html">Projects</a>
+      <a class="nav-link" href="certifications.html">Certs</a>
+      <a class="nav-cta" href="contact.html">Contact →</a>
+    </nav>
   </div>
+</header>
 
-  <main id="main">
+<main id="main">
 
-    <!-- Page Header -->
-    <section class="page-header">
-      <div class="container">
-        <h1>Resume</h1>
-        <p>A comprehensive overview of my professional experience, skills, and education.</p>
+  <section class="page-header">
+    <div class="container">
+      <div class="eyebrow reveal">§ 10 · File · Resume</div>
+      <h1 class="reveal">The full<br>record<em style="font-style: italic; color: var(--signal);">.</em></h1>
+      <p class="lede reveal">A decade across the Gulf Coast: field, lab bench, quality grading, and emergency response, now building toward industrial software.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+
+      <div class="download-row reveal">
+        <span class="mono">PDF · A. HINOJOSA · 2026</span>
+        <a class="btn btn-primary" href="resume.pdf" download>Download Resume (PDF) <span class="arrow">→</span></a>
       </div>
-    </section>
 
-    <!-- Download Row -->
-    <section class="section">
-      <div class="container">
-        <div class="download-row">
-          <p>Download a PDF copy of my resume</p>
-          <a href="resume.pdf" class="btn btn-primary" download>Download Resume (PDF)</a>
+      <div class="resume-block reveal">
+        <h2>Summary <span class="num">§ 01</span></h2>
+        <p class="resume-summary">Industrial laboratory technician and NREMT with extensive experience in petrochemical operations, product quality, and emergency response. Reliable in high-risk environments, acting as lab point of contact between operations, business, and technical teams. Currently supporting polymer and glycol production at ExxonMobil's GCGV complex while advancing toward a Computer Science degree.</p>
+      </div>
+
+      <div class="resume-block reveal">
+        <h2>Core skills <span class="num">§ 02</span></h2>
+        <div class="tag-row">
+          <span class="tag">HPLC</span><span class="tag">GC</span><span class="tag">FTIR</span><span class="tag">UV-Vis</span><span class="tag">X-ray</span><span class="tag">Melt Index</span><span class="tag">Polymers</span><span class="tag">Glycols</span><span class="tag">Olefins</span><span class="tag">Petroleum Products</span><span class="tag">QC Standards</span><span class="tag">5S</span><span class="tag">Sample Management</span><span class="tag">Product Quality Grading</span><span class="tag sig">NREMT</span><span class="tag">Industrial Firefighting</span><span class="tag">HazMat</span><span class="tag">Air Monitoring</span><span class="tag sig">FAA Part 107</span><span class="tag">Drone Operations</span><span class="tag">Heavy Equipment</span><span class="tag">Confined Space</span><span class="tag">Permit Writing</span><span class="tag">Lab-Operations Coordination</span>
         </div>
       </div>
-    </section>
 
-    <!-- Web Resume -->
-    <section class="section">
-      <div class="container">
-        <div class="surface" style="padding: var(--space-6);">
-
-          <!-- Summary -->
-          <div class="resume-block">
-            <h2>Summary</h2>
-            <p>Industrial laboratory technician and NREMT with extensive experience in petrochemical operations, product quality, and emergency response. Known for reliability in high-risk environments, acting as lab point of contact between operations, business, and technical teams, and bringing a strong safety mindset to all work. Currently supporting polymer and glycol production at ExxonMobil's GCGV complex while advancing technical education toward a Computer Science degree.</p>
-          </div>
-
-          <!-- Core Skills -->
-          <div class="resume-block">
-            <h2>Core Skills</h2>
-            <div class="tag-row">
-              <span class="tag">HPLC</span>
-              <span class="tag">GC</span>
-              <span class="tag">FTIR</span>
-              <span class="tag">UV-Vis</span>
-              <span class="tag">X-ray</span>
-              <span class="tag">Melt Index</span>
-              <span class="tag">Polymers</span>
-              <span class="tag">Glycols</span>
-              <span class="tag">Olefins</span>
-              <span class="tag">Petroleum Products</span>
-              <span class="tag">QC Standards</span>
-              <span class="tag">5S</span>
-              <span class="tag">Sample Management</span>
-              <span class="tag">Product Quality Grading</span>
-              <span class="tag">NREMT</span>
-              <span class="tag">Industrial Firefighting</span>
-              <span class="tag">HazMat</span>
-              <span class="tag">Air Monitoring</span>
-              <span class="tag">FAA Part 107</span>
-              <span class="tag">Drone Operations</span>
-              <span class="tag">Heavy Equipment</span>
-              <span class="tag">Confined Space</span>
-              <span class="tag">Permit Writing</span>
-              <span class="tag">Lab-Operations Coordination</span>
+      <div class="resume-block reveal">
+        <h2>Experience <span class="num">§ 03</span></h2>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-meta"><span class="yr">2023 → Present</span>Gregory, TX</div>
+            <div class="tl-body">
+              <h3>Laboratory Technician</h3>
+              <span class="org">ExxonMobil · GCGV</span>
+              <ul class="bullets">
+                <li>Perform high-volume analytical testing and material characterization for polymers, glycols, and olefins.</li>
+                <li>Serve as laboratory Point of Contact on shift, coordinating with operations, engineering, and business teams.</li>
+                <li>Act as Product Quality Grader, providing go/no-go decisions for finished product.</li>
+                <li>Participate in Emergency Response Fire &amp; Rescue and EHS drone operations.</li>
+                <li>Contribute as Turnaround Safety Training Advisor during outages.</li>
+              </ul>
             </div>
           </div>
-
-          <!-- Experience -->
-          <div class="resume-block">
-            <h2>Experience</h2>
-            <ul class="timeline">
-
-              <li class="timeline-item">
-                <div class="timeline-meta">2023 &ndash; Present</div>
-                <h3>Laboratory Technician, ExxonMobil, Gregory, TX</h3>
-                <ul class="resume-list">
-                  <li>Perform high-volume analytical testing and material characterization for polymers, glycols, and olefins</li>
-                  <li>Serve as laboratory Point of Contact on shift, coordinating with operations, engineering, and business teams</li>
-                  <li>Act as Product Quality Grader, providing go/no-go decisions for finished product</li>
-                  <li>Participate in Emergency Response Fire &amp; Rescue and EHS drone operations</li>
-                  <li>Contribute as T/A Safety Training Advisor during turnarounds</li>
-                </ul>
-              </li>
-
-              <li class="timeline-item">
-                <div class="timeline-meta">2021 &ndash; 2023</div>
-                <h3>Laboratory Technician (Contract), Kelly / ExxonMobil GCGV, Gregory, TX</h3>
-                <ul class="resume-list">
-                  <li>Collaborated with GCGV technical team to verify product quality against specifications</li>
-                  <li>Conducted routine and non-routine analyses on process, product, and environmental samples</li>
-                  <li>Supported emergency response and industrial hygiene with rapid air monitoring</li>
-                </ul>
-              </li>
-
-              <li class="timeline-item">
-                <div class="timeline-meta">2020 &ndash; 2021</div>
-                <h3>Laboratory Technician / Inspector, Bureau Veritas, Corpus Christi, TX</h3>
-                <ul class="resume-list">
-                  <li>Provided third-party quality assurance testing for multiple refineries</li>
-                  <li>Executed standardized test methods for compliance</li>
-                  <li>Communicated results to refinery and marine customers in time-sensitive situations</li>
-                </ul>
-              </li>
-
-              <li class="timeline-item">
-                <div class="timeline-meta">2018 &ndash; 2020</div>
-                <h3>Laboratory Technician / Production Helper, voestalpine, Gregory, TX</h3>
-                <ul class="resume-list">
-                  <li>Ensured quality of iron ore pellets and briquettes through analytical testing</li>
-                  <li>Collected process and wastewater samples for compliance</li>
-                  <li>Maintained lab housekeeping and 5S standards</li>
-                  <li>Operated heavy equipment including forklifts and skid steers</li>
-                </ul>
-              </li>
-
-              <li class="timeline-item">
-                <div class="timeline-meta">2014 &ndash; 2017</div>
-                <h3>Lead Painter / Blaster, BrandSafway, Corpus Christi, TX</h3>
-                <ul class="resume-list">
-                  <li>Performed process equipment maintenance including blasting, painting, fireproofing</li>
-                  <li>Operated man lifts and scissor lifts</li>
-                  <li>Served as safety lead, writing work permits and coordinating job authorization</li>
-                </ul>
-              </li>
-
-            </ul>
+          <div class="tl-item">
+            <div class="tl-meta"><span class="yr">2021 → 2023</span>Gregory, TX</div>
+            <div class="tl-body">
+              <h3>Laboratory Technician (Contract)</h3>
+              <span class="org">Kelly · ExxonMobil GCGV</span>
+              <ul class="bullets">
+                <li>Collaborated with the GCGV technical team to verify product quality against specifications.</li>
+                <li>Conducted routine and non-routine analyses on process, product, and environmental samples.</li>
+                <li>Supported emergency response and industrial hygiene with rapid air monitoring.</li>
+              </ul>
+            </div>
           </div>
-
-          <!-- Education -->
-          <div class="resume-block">
-            <h2>Education</h2>
-            <ul class="timeline">
-              <li class="timeline-item">
-                <div class="timeline-meta">In Progress</div>
-                <h3>BS Computer Science, Western Governors University</h3>
-              </li>
-              <li class="timeline-item">
-                <div class="timeline-meta">2024</div>
-                <h3>EMT Certificate, Del Mar College, Corpus Christi, TX</h3>
-              </li>
-            </ul>
+          <div class="tl-item">
+            <div class="tl-meta"><span class="yr">2020 → 2021</span>Corpus Christi, TX</div>
+            <div class="tl-body">
+              <h3>Laboratory Technician / Inspector</h3>
+              <span class="org">Bureau Veritas</span>
+              <ul class="bullets">
+                <li>Provided third-party quality assurance testing for multiple refineries.</li>
+                <li>Executed standardized test methods for compliance.</li>
+                <li>Communicated results to refinery and marine customers in time-sensitive situations.</li>
+              </ul>
+            </div>
           </div>
-
-          <!-- Certifications -->
-          <div class="resume-block">
-            <h2>Certifications</h2>
-            <ul class="resume-list">
-              <li>NREMT: Nationally Registered Emergency Medical Technician</li>
-              <li>FAA Part 107 Remote Pilot Certification (2025)</li>
-              <li>OSHA 30 General Industry</li>
-              <li>40-Hour HAZWOPER</li>
-            </ul>
+          <div class="tl-item">
+            <div class="tl-meta"><span class="yr">2018 → 2020</span>Gregory, TX</div>
+            <div class="tl-body">
+              <h3>Laboratory Technician / Production Helper</h3>
+              <span class="org">voestalpine</span>
+              <ul class="bullets">
+                <li>Ensured quality of iron ore pellets and briquettes through analytical testing.</li>
+                <li>Collected process and wastewater samples for compliance.</li>
+                <li>Maintained lab housekeeping and 5S standards.</li>
+                <li>Operated heavy equipment including forklifts and skid steers.</li>
+              </ul>
+            </div>
           </div>
-
+          <div class="tl-item">
+            <div class="tl-meta"><span class="yr">2014 → 2017</span>Corpus Christi, TX</div>
+            <div class="tl-body">
+              <h3>Lead Painter / Blaster</h3>
+              <span class="org">BrandSafway</span>
+              <ul class="bullets">
+                <li>Performed process equipment maintenance including blasting, painting, and fireproofing.</li>
+                <li>Operated man lifts and scissor lifts.</li>
+                <li>Served as safety lead, writing work permits and coordinating job authorization.</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
-    </section>
 
-  </main>
+      <div class="resume-block reveal">
+        <h2>Education <span class="num">§ 04</span></h2>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-meta"><span class="yr">In Progress</span>Online</div>
+            <div class="tl-body">
+              <h3>BS Computer Science</h3>
+              <span class="org">Western Governors University</span>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-meta"><span class="yr">2024</span>Corpus Christi, TX</div>
+            <div class="tl-body">
+              <h3>EMT Certificate</h3>
+              <span class="org">Del Mar College</span>
+            </div>
+          </div>
+        </div>
+      </div>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container footer-wrap">
-      <span><strong>Anthony Hinojosa</strong></span>
-      <nav class="footer-nav" aria-label="Footer navigation">
-        <a href="about.html">About</a>
-        <a href="experience.html">Experience</a>
-        <a href="projects.html">Projects</a>
-        <a href="certifications.html">Certifications</a>
-        <a href="blog.html">Blog</a>
-        <a href="resume.html">Resume</a>
-        <a href="contact.html">Contact</a>
-      </nav>
-      <span class="muted" style="font-size: 0.85em;">&copy; 2026 Anthony Hinojosa</span>
+      <div class="resume-block reveal">
+        <h2>Certifications <span class="num">§ 05</span></h2>
+        <ul class="resume-list">
+          <li>NREMT · Nationally Registered Emergency Medical Technician</li>
+          <li>FAA Part 107 Remote Pilot Certification (2025)</li>
+          <li>OSHA 30 General Industry</li>
+          <li>40-Hour HAZWOPER</li>
+        </ul>
+      </div>
+
     </div>
-  </footer>
+  </section>
 
-  <script src="js/main.js"></script>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div><h4>Anthony Hinojosa</h4><p class="footer-name">Quality,<br>safety,<br>systems.</p></div>
+      <div><h4>Site</h4><a href="index.html">Index</a><a href="about.html">About</a><a href="experience.html">Experience</a><a href="mindmap.html">Map</a><a href="projects.html">Projects</a></div>
+      <div><h4>Credentials</h4><a href="certifications.html">Certifications</a><a href="skills.html">Skills</a><a href="resume.html">Resume (PDF)</a><a href="blog.html">Writing</a></div>
+      <div><h4>Contact</h4><a href="contact.html">Send a message</a><a href="mailto:anthony@example.com">anthony@example.com</a><a href="#">LinkedIn →</a></div>
+    </div>
+    <div class="footer-bottom">
+      <span class="mono">© 2026 A. HINOJOSA · CORPUS CHRISTI, TX · <span data-clock>00:00:00 UTC</span></span>
+      <span class="mono">BUILT ON PAPER &amp; INK</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/site.js"></script>
 </body>
 </html>

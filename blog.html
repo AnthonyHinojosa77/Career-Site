@@ -1,128 +1,131 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Blog | Anthony Hinojosa</title>
-  <meta name="description" content="Perspectives on quality, safety, and technology in industrial operations by Anthony Hinojosa.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/global.css">
-  <link rel="stylesheet" href="css/components.css">
-  <link rel="stylesheet" href="css/pages.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Writing · Anthony Hinojosa</title>
+<meta name="description" content="Perspectives on quality, safety, and technology in industrial operations by Anthony Hinojosa.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/system.css">
+<link rel="stylesheet" href="css/pages.css">
+<style>
+  .post-card { display: flex; flex-direction: column; min-height: 280px; }
+  .post-card .post-date {
+    font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--signal); margin-bottom: 16px; display: block;
+  }
+  .post-card h3 {
+    font-family: var(--f-display); font-size: 26px; line-height: 1.08;
+    letter-spacing: -0.02em; margin-bottom: 14px;
+  }
+  .post-card p { color: var(--ink-2); font-size: 14.5px; line-height: 1.55; margin: 0 0 24px; }
+  .post-card .post-foot { margin-top: auto; }
+  .post-card.soon { background: var(--paper-2); }
+  .post-card.soon .post-date { color: var(--ink-4); }
+  .post-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ink); position: relative;
+  }
+  .post-link .arrow { color: var(--signal); transition: transform 0.15s; }
+  .post-link:hover .arrow { transform: translateX(4px); }
+  .post-soon-tag {
+    font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--ink-4);
+  }
+</style>
 </head>
-<body>
+<body data-theme="light" class="hv-editorial">
 
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+<a class="skip" href="#main">Skip to main</a>
 
-  <!-- Header -->
-  <header class="site-header" data-site-header>
-    <div class="container nav-wrap">
-      <a class="brand" href="index.html">Anthony Hinojosa</a>
-      <nav aria-label="Primary">
-        <ul class="nav-links">
-          <li><a class="nav-link" data-nav-link href="about.html">About</a></li>
-          <li><a class="nav-link" data-nav-link href="experience.html">Experience</a></li>
-          <li><a class="nav-link" data-nav-link href="projects.html">Projects</a></li>
-          <li><a class="nav-link" data-nav-link href="certifications.html">Certifications</a></li>
-          <li><a class="nav-link" data-nav-link href="blog.html" aria-current="page">Blog</a></li>
-          <li><a class="nav-link" data-nav-link href="resume.html">Resume</a></li>
-          <li><a class="nav-link" data-nav-link href="contact.html">Contact</a></li>
-        </ul>
-      </nav>
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu" data-menu-toggle>
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-      </button>
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html">
+      <span class="dot"></span><strong>Hinojosa</strong>
+      <span class="slash">/</span><span>Career · 2026</span>
+    </a>
+    <nav class="nav-links">
+      <a class="nav-link" href="index.html">Index</a>
+      <a class="nav-link" href="about.html">About</a>
+      <a class="nav-link" href="experience.html">Experience</a>
+      <a class="nav-link" href="mindmap.html">Map</a>
+      <a class="nav-link" href="projects.html">Projects</a>
+      <a class="nav-link" href="certifications.html">Certs</a>
+      <a class="nav-cta" href="contact.html">Contact →</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="page-header">
+    <div class="container">
+      <div class="eyebrow reveal">§ 12 · File · Writing</div>
+      <h1 class="reveal">Notes from<br>the floor<em style="font-style: italic; color: var(--signal);">.</em></h1>
+      <p class="lede reveal">Perspectives on quality, safety, and technology in industrial operations, written from inside the lab and the field.</p>
     </div>
+  </section>
 
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobile-menu" data-mobile-menu>
-      <div class="mobile-menu-panel" data-mobile-panel>
-        <button class="btn btn-ghost" type="button" data-menu-close>Close</button>
-        <a data-nav-link href="about.html">About</a>
-        <a data-nav-link href="experience.html">Experience</a>
-        <a data-nav-link href="projects.html">Projects</a>
-        <a data-nav-link href="certifications.html">Certifications</a>
-        <a data-nav-link href="blog.html" class="is-active" aria-current="page">Blog</a>
-        <a data-nav-link href="resume.html">Resume</a>
-        <a data-nav-link href="contact.html">Contact</a>
+  <section class="section">
+    <div class="container">
+
+      <div class="filters reveal" data-filter-group="blog" role="toolbar" aria-label="Filter writing">
+        <button class="on" data-filter="all">All</button>
+        <button data-filter="technology">Technology</button>
+        <button data-filter="safety">Safety</button>
+        <button data-filter="operations">Operations</button>
       </div>
-    </div>
-  </header>
 
-  <main id="main-content">
+      <div class="grid g3">
 
-    <!-- Page Header -->
-    <section class="page-header">
-      <div class="container">
-        <h1 class="reveal">Blog</h1>
-        <p class="section-intro reveal">Perspectives on quality, safety, and technology in industrial operations.</p>
-      </div>
-    </section>
-
-    <!-- Blog Posts -->
-    <section class="section">
-      <div class="container">
-
-        <!-- Filter Controls -->
-        <div class="filter-controls reveal" role="toolbar" aria-label="Filter blog posts" data-filter-group="blog">
-          <button class="btn btn-ghost is-active" type="button" data-filter="all" aria-pressed="true">All</button>
-          <button class="btn btn-ghost" type="button" data-filter="technology" aria-pressed="false">Technology</button>
-          <button class="btn btn-ghost" type="button" data-filter="safety" aria-pressed="false">Safety</button>
-          <button class="btn btn-ghost" type="button" data-filter="operations" aria-pressed="false">Operations</button>
-        </div>
-
-        <div class="grid grid-3">
-
-          <!-- Post 1: AI & Quality Assurance -->
-          <div class="filter-item card reveal" data-filter-item="blog" data-category="technology">
-            <span class="muted">February 2026</span>
-            <h3>How AI Could Transform Quality Assurance in Refineries</h3>
-            <p>Exploring what machine learning could mean for analytical testing, product release, and lab operations from an operator's perspective.</p>
-            <a href="blog-post.html" class="btn btn-ghost">Read Post &rarr;</a>
+        <article class="cap-card reveal post-card" data-filter-item="blog" data-category="technology">
+          <span class="post-date">February 2026</span>
+          <h3>How AI Could Transform Quality Assurance in Refineries</h3>
+          <p>What machine learning could mean for analytical testing, product release, and lab operations, from an operator's perspective.</p>
+          <div class="post-foot">
+            <a class="post-link" href="blog-post.html">Read post <span class="arrow">→</span></a>
           </div>
+        </article>
 
-          <!-- Post 2: Lab & Field -->
-          <div class="filter-item card reveal" data-filter-item="blog" data-category="operations">
-            <span class="muted">Coming Soon</span>
-            <h3>Bridging the Lab and the Field</h3>
-            <p>Why cross-functional coordination between laboratory teams and field operations matters for safety and quality.</p>
-            <span class="muted">Coming Soon</span>
-          </div>
+        <article class="cap-card reveal post-card soon" data-filter-item="blog" data-category="operations">
+          <span class="post-date">Coming Soon</span>
+          <h3>Bridging the Lab and the Field</h3>
+          <p>Why cross-functional coordination between laboratory teams and field operations matters for safety and quality.</p>
+          <div class="post-foot"><span class="post-soon-tag">● Drafting</span></div>
+        </article>
 
-          <!-- Post 3: Drones -->
-          <div class="filter-item card reveal" data-filter-item="blog" data-category="safety">
-            <span class="muted">Coming Soon</span>
-            <h3>Drones in Industrial Safety</h3>
-            <p>How FAA Part 107 drone capability creates new possibilities for emergency response and facility inspection.</p>
-            <span class="muted">Coming Soon</span>
-          </div>
-
-        </div>
+        <article class="cap-card reveal post-card soon" data-filter-item="blog" data-category="safety">
+          <span class="post-date">Coming Soon</span>
+          <h3>Drones in Industrial Safety</h3>
+          <p>How FAA Part 107 drone capability creates new possibilities for emergency response and facility inspection.</p>
+          <div class="post-foot"><span class="post-soon-tag">● Drafting</span></div>
+        </article>
 
       </div>
-    </section>
 
-  </main>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container footer-wrap">
-      <p><strong>Anthony Hinojosa</strong></p>
-      <nav class="footer-nav" aria-label="Footer">
-        <a href="about.html">About</a>
-        <a href="experience.html">Experience</a>
-        <a href="projects.html">Projects</a>
-        <a href="certifications.html">Certifications</a>
-        <a href="blog.html">Blog</a>
-        <a href="resume.html">Resume</a>
-        <a href="contact.html">Contact</a>
-      </nav>
-      <span class="muted" style="font-size: 0.85em;">&copy; 2026 Anthony Hinojosa</span>
     </div>
-  </footer>
+  </section>
 
-  <script src="js/main.js"></script>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div><h4>Anthony Hinojosa</h4><p class="footer-name">Quality,<br>safety,<br>systems.</p></div>
+      <div><h4>Site</h4><a href="index.html">Index</a><a href="about.html">About</a><a href="experience.html">Experience</a><a href="mindmap.html">Map</a><a href="projects.html">Projects</a></div>
+      <div><h4>Credentials</h4><a href="certifications.html">Certifications</a><a href="skills.html">Skills</a><a href="resume.html">Resume (PDF)</a><a href="blog.html">Writing</a></div>
+      <div><h4>Contact</h4><a href="contact.html">Send a message</a><a href="mailto:anthony@example.com">anthony@example.com</a><a href="#">LinkedIn →</a></div>
+    </div>
+    <div class="footer-bottom">
+      <span class="mono">© 2026 A. HINOJOSA · CORPUS CHRISTI, TX · <span data-clock>00:00:00 UTC</span></span>
+      <span class="mono">BUILT ON PAPER &amp; INK</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/site.js"></script>
 </body>
 </html>

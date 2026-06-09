@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STAR Story · Anthony Hinojosa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/system.css">
+<link rel="stylesheet" href="css/pages.css">
+<style>
+  .star-hero { padding: 72px 0 40px; border-bottom: 1px solid var(--rule); }
+  .star-hero .breadcrumb {
+    font-family: var(--f-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .star-hero .breadcrumb a { color: var(--ink-3); text-decoration: none; border-bottom: 1px dashed var(--rule-2); padding-bottom: 1px; }
+  .star-hero .breadcrumb a:hover { color: var(--signal); border-color: var(--signal); }
+  .star-hero .sep { opacity: 0.4; }
+  .star-hero h1 {
+    font-family: var(--f-display);
+    font-size: clamp(48px, 7vw, 96px);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    margin: 0 0 28px;
+    color: var(--ink);
+  }
+  .star-hero h1 em { font-style: italic; color: var(--signal); font-weight: 400; }
+  .star-hero .kicker {
+    font-family: var(--f-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--signal);
+    margin-bottom: 18px;
+    display: block;
+  }
+  .star-hero .lede {
+    font-family: var(--f-display);
+    font-size: clamp(22px, 2.2vw, 28px);
+    line-height: 1.35;
+    font-style: italic;
+    color: var(--ink-2);
+    max-width: 760px;
+    margin: 32px 0 0;
+  }
+
+  .star-meta {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border: 1px solid var(--ink);
+    margin-top: 40px;
+  }
+  .star-meta > div { padding: 18px 20px; border-right: 1px solid var(--rule); }
+  .star-meta > div:last-child { border-right: 0; }
+  .star-meta .k {
+    font-family: var(--f-mono);
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    display: block;
+    margin-bottom: 6px;
+  }
+  .star-meta .v {
+    font-family: var(--f-sans);
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+  @media (max-width: 720px) {
+    .star-meta { grid-template-columns: repeat(2, 1fr); }
+    .star-meta > div { border-bottom: 1px solid var(--rule); }
+    .star-meta > div:nth-child(2n) { border-right: 0; }
+  }
+
+  .star-body { padding: 64px 0 40px; }
+
+  .star-block {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 40px;
+    padding: 40px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .star-block:last-of-type { border-bottom: 0; }
+  .star-block .gutter {
+    border-left: 2px solid var(--ink);
+    padding-left: 18px;
+  }
+  .star-block.emph .gutter { border-color: var(--signal); }
+  .star-block .tag {
+    font-family: var(--f-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    display: block;
+    margin-bottom: 10px;
+  }
+  .star-block .letter {
+    font-family: var(--f-display);
+    font-size: 72px;
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .star-block.emph .letter { color: var(--signal); }
+  .star-block h2 {
+    font-family: var(--f-display);
+    font-size: clamp(28px, 3vw, 40px);
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    margin: 0 0 14px;
+    color: var(--ink);
+  }
+  .star-block p {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--ink-2);
+    margin: 0 0 14px;
+    text-wrap: pretty;
+  }
+  .star-block p:last-child { margin-bottom: 0; }
+  .star-block ul {
+    list-style: none;
+    padding: 0;
+    margin: 12px 0 0;
+    border-top: 1px solid var(--rule);
+  }
+  .star-block li {
+    padding: 10px 0;
+    border-bottom: 1px dashed var(--rule);
+    font-size: 15px;
+    color: var(--ink-2);
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .star-block li::before {
+    content: "▸";
+    color: var(--signal);
+    font-family: var(--f-mono);
+    flex-shrink: 0;
+  }
+
+  .star-numbers {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border: 1px solid var(--ink);
+    margin-top: 16px;
+  }
+  .star-numbers > div { padding: 22px 20px; border-right: 1px solid var(--rule); }
+  .star-numbers > div:last-child { border-right: 0; }
+  .star-numbers .num {
+    font-family: var(--f-display);
+    font-size: 44px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--signal);
+    display: block;
+    margin-bottom: 8px;
+  }
+  .star-numbers .lbl {
+    font-family: var(--f-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    line-height: 1.3;
+  }
+  @media (max-width: 640px) {
+    .star-numbers { grid-template-columns: 1fr; }
+    .star-numbers > div { border-right: 0; border-bottom: 1px solid var(--rule); }
+    .star-block { grid-template-columns: 1fr; gap: 16px; }
+  }
+
+  .star-nav {
+    border-top: 1px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .star-nav a {
+    padding: 28px 28px;
+    display: block;
+    text-decoration: none;
+    color: var(--ink);
+    font-family: var(--f-sans);
+    transition: background 0.15s, color 0.15s;
+  }
+  .star-nav a:first-child { border-right: 1px solid var(--rule); }
+  .star-nav a:hover { background: var(--ink); color: var(--paper); }
+  .star-nav a:hover .mono { color: var(--signal); }
+  .star-nav .mono {
+    display: block;
+    font-family: var(--f-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--ink-3);
+    margin-bottom: 6px;
+  }
+  .star-nav strong {
+    font-family: var(--f-display);
+    font-size: 28px;
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    line-height: 1;
+  }
+  .star-nav .next { text-align: right; }
+
+  .star-missing {
+    padding: 80px 0;
+    text-align: center;
+  }
+  .star-missing h1 { font-family: var(--f-display); font-size: 64px; margin: 0 0 12px; }
+  .star-missing p { color: var(--ink-2); font-size: 17px; margin: 0 0 24px; }
+</style>
+</head>
+<body data-theme="light" class="hv-editorial">
+
+<a class="skip" href="#main">Skip to main</a>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html">
+      <span class="dot"></span><strong>Hinojosa</strong>
+      <span class="slash">/</span><span>Career · 2026</span>
+    </a>
+    <nav class="nav-links">
+      <a class="nav-link" href="index.html">Index</a>
+      <a class="nav-link" href="about.html">About</a>
+      <a class="nav-link" href="experience.html">Experience</a>
+      <a class="nav-link" href="mindmap.html">Map</a>
+      <a class="nav-link" href="projects.html">Projects</a>
+      <a class="nav-link" href="certifications.html">Certs</a>
+      <a class="nav-cta" href="contact.html">Contact →</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div id="star-root"></div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div><h4>Anthony Hinojosa</h4><p class="footer-name">Quality,<br>safety,<br>systems.</p></div>
+      <div><h4>Site</h4><a href="index.html">Index</a><a href="about.html">About</a><a href="experience.html">Experience</a><a href="mindmap.html">Map</a><a href="projects.html">Projects</a></div>
+      <div><h4>Credentials</h4><a href="certifications.html">Certifications</a><a href="skills.html">Skills</a><a href="resume.html">Resume (PDF)</a><a href="blog.html">Writing</a></div>
+      <div><h4>Contact</h4><a href="contact.html">Send a message</a><a href="mailto:anthony@example.com">anthony@example.com</a><a href="#">LinkedIn →</a></div>
+    </div>
+    <div class="footer-bottom">
+      <span class="mono">© 2026 A. HINOJOSA · CORPUS CHRISTI, TX · <span data-clock>00:00:00 UTC</span></span>
+      <span class="mono">BUILT ON PAPER &amp; INK</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/site.js"></script>
+<script>
+(function() {
+  const STORIES = {
+    analytical: {
+      order: ["analytical","quality","response","field","liaison","cs"],
+      code: "CAP,01",
+      name: "Lab Operations",
+      kicker: "§ STAR · Analytical",
+      lede: "A release test went sideways on a holiday shift. The lab was the last line of defense, and I had to decide whether to ship or stop the truck.",
+      meta: { site: "Bureau Veritas · Gulf Coast", period: "2020 / 2021", instruments: "GC · FTIR · Colorimetry", status: "Resolved" },
+      situation: "During a Thanksgiving night shift, a tanker was loading ultra low sulfur diesel for distribution. An incoming release sample came back just over the sulfur cap on GC. The customer had already sealed the truck and the driver was waiting on paperwork.",
+      task: "I had to confirm whether the result was real or a method issue, with the clock ticking and no day,shift chemist available to second,check. Shipping bad product would put the customer out of spec; holding a clean truck would cost hours and draw scrutiny.",
+      action: [
+        "Pulled a fresh sample from the same tank and ran it in parallel to the first.",
+        "Verified column temperature and detector response with the daily standard.",
+        "Compared raw chromatograms side by side, not just the reported number.",
+        "Documented the integration baseline drift on the first run.",
+        "Called the shift supervisor before the driver finished paperwork."
+      ],
+      result_summary: "The re,run came back in spec. The first result was a baseline integration artifact, not a real sulfur excursion. Truck released, customer never saw a delay, and the incident was logged with the method team to tighten integration rules.",
+      numbers: [
+        { num: "0", lbl: "Trucks rejected in error" },
+        { num: "< 45 min", lbl: "From flag to release decision" },
+        { num: "1", lbl: "Method change proposed" }
+      ]
+    },
+    quality: {
+      order: ["quality","response","field","liaison","cs","analytical"],
+      code: "CAP,02",
+      name: "Product Grading",
+      kicker: "§ STAR · Quality",
+      lede: "A glycol grade started drifting on color. I traced it back three steps and caught the source before the lot shipped.",
+      meta: { site: "voestalpine · Corpus Christi", period: "2018 / 2020", product: "MEG · DEG", status: "Contained" },
+      situation: "Release testing showed a slow creep on APHA color across three consecutive lots of MEG destined for a fiber customer. None of the lots were out of spec individually, but the trend was pointing at a limit hit within a shift or two.",
+      task: "I had to decide whether to flag it formally or let it ride. The lab had no formal early warning for trend drift, so it was on me to make the call before the customer saw it first.",
+      action: [
+        "Pulled the last 30 days of release APHA results and plotted the trend.",
+        "Walked upstream to the rerun column with the process engineer.",
+        "Cross checked water content and iron trace on the same samples.",
+        "Opened a quality event with supporting data instead of waiting on the next out,of,spec."
+      ],
+      result_summary: "Process team found a fouled reboiler that had been slowly biasing color. Fixed during the next planned outage. No customer complaints, no off,spec lots shipped, and the lab added a trend,drift trigger to the daily review.",
+      numbers: [
+        { num: "0", lbl: "Off,spec lots shipped" },
+        { num: "30 days", lbl: "Of trend data reviewed" },
+        { num: "1", lbl: "New trigger rule adopted" }
+      ]
+    },
+    response: {
+      order: ["response","field","liaison","cs","analytical","quality"],
+      code: "CAP,03",
+      name: "Safety &amp; Emergency Response",
+      kicker: "§ STAR · Response",
+      lede: "A contractor went down in the tank farm on a 100 degree afternoon. I got there first.",
+      meta: { site: "ExxonMobil · Gulf Coast", period: "2024", type: "Heat illness · medical", status: "Patient stabilized" },
+      situation: "Mid afternoon during a summer turnaround, radio traffic reported a contractor collapsed inside a tank dike. Temperatures were over 100 F with heavy PPE. I was closest credentialed responder on site.",
+      task: "Get to the patient, assess, stabilize, and hand off to arriving EMS. Keep the scene safe while coordinating with the fire team on access and air monitoring.",
+      action: [
+        "Radioed control room for ambulance dispatch and cleared the dike for entry.",
+        "Assessed ABCs on arrival, conscious but altered, classic heat exhaustion.",
+        "Moved patient to cool shaded area with incident command's approval.",
+        "Started active cooling with ice packs to neck, armpits, groin.",
+        "Reported vitals every two minutes until paramedics arrived and took over."
+      ],
+      result_summary: "Patient was transported stable, treated and released same day. Post,incident review credited the fast on,site stabilization. The site added a mid,shift hydration check during heat advisories.",
+      numbers: [
+        { num: "< 3 min", lbl: "Response time to scene" },
+        { num: "100%", lbl: "Protocol compliance, post review" },
+        { num: "1", lbl: "Heat policy update adopted" }
+      ]
+    },
+    field: {
+      order: ["field","liaison","cs","analytical","quality","response"],
+      code: "CAP,04",
+      name: "Field &amp; Flight",
+      kicker: "§ STAR · Field",
+      lede: "The scaffold bid came in at six figures. I flew the inspection from the ground in 40 minutes.",
+      meta: { site: "ExxonMobil · Gulf Coast", period: "2025", platform: "DJI M300 · zoom + thermal", status: "Cost avoided" },
+      situation: "A suspected refractory issue on an elevated heater needed close visual inspection before the next turnaround. The default path was a full scaffold build, estimated high five to low six figures, plus three to five days of crew time.",
+      task: "Propose and execute an aerial inspection under Part 107 with enough image quality to make the scaffold go or no,go decision. Work through flight authorization, weather windows, and plant permitting.",
+      action: [
+        "Wrote the flight plan, hazard map, and emergency procedures for review.",
+        "Coordinated flare status and unit hold points with operations before launch.",
+        "Flew a structured grid with RGB and thermal at three altitudes.",
+        "Delivered annotated imagery to the inspection engineer same day.",
+        "Logged the flight and maintenance checks to Part 107 standards."
+      ],
+      result_summary: "Imagery was clear enough for the engineer to downgrade the finding and defer full scaffold to the next planned TAR. Saved an estimated five figure cost on that single inspection; flight playbook now reused for similar jobs.",
+      numbers: [
+        { num: "40 min", lbl: "Total flight time" },
+        { num: "~$80k", lbl: "Scaffold avoided (est.)" },
+        { num: "1", lbl: "Reusable flight playbook" }
+      ]
+    },
+    liaison: {
+      order: ["liaison","cs","analytical","quality","response","field"],
+      code: "CAP,05",
+      name: "Leadership &amp; Liaison",
+      kicker: "§ STAR · Liaison",
+      lede: "Nights, holiday coverage, a contractor crew in the wrong place. I held the permit and stopped the job.",
+      meta: { site: "ExxonMobil · Gulf Coast", period: "2024", role: "Step,up supervisor", status: "Stop,work executed" },
+      situation: "Holiday night shift with a skeleton crew. A contractor team showed up to start hot work on a line I had not personally walked. The permit had language that matched the job name but not the actual isolation state.",
+      task: "As step,up supervisor I owned permit authority for the shift. The crew was ready, the work was overdue, and pushing back would cost the job hours and possibly the window.",
+      action: [
+        "Stopped the job at the gate before any ignition source entered the zone.",
+        "Walked the line personally with the contractor foreman.",
+        "Verified blinds, drain status, and LEL readings against the permit.",
+        "Identified a missed blind, permit did not match reality.",
+        "Reissued the permit only after the blind was installed and verified."
+      ],
+      result_summary: "Job started four hours late, safe. Post,shift review flagged the original permit template; it was rewritten the next week. No incident, no near miss logged, and the contractor crew thanked the catch.",
+      numbers: [
+        { num: "1", lbl: "Stop,work authority exercised" },
+        { num: "0", lbl: "Incidents or near misses" },
+        { num: "1", lbl: "Permit template rewritten" }
+      ]
+    },
+    cs: {
+      order: ["cs","analytical","quality","response","field","liaison"],
+      code: "CAP,06",
+      name: "CS &amp; AI/ML",
+      kicker: "§ STAR · In Progress",
+      lede: "Ten years of plant and lab context, now being converted into software. This branch is a live build, not a finished story.",
+      meta: { program: "WGU · BS Computer Science", focus: "AI · ML · Data", target: "2028", status: "In progress" },
+      situation: "The industrial side of my career runs on data, LIMS entries, permit histories, instrument logs, but the people closest to that data rarely write the tools on top of it. I saw a repeating gap: smart plants, weak software layer between floor and decision makers.",
+      task: "Pivot without leaving the trade. Earn a credible CS foundation while holding down a full time operator role, and start shipping small tools that use real plant and lab context.",
+      action: [
+        "Enrolled in WGU BS Computer Science with AI / ML concentration.",
+        "Building portfolio projects on plant adjacent problems, quality trending, predictive alarms, inspection triage.",
+        "Pairing coursework with hands on practice on real industrial datasets.",
+        "Using this site as the forcing function to publish progress, not hide it."
+      ],
+      result_summary: "Degree target 2028. Current state, coursework active, first portfolio tools under build. Story updates here as the branch matures.",
+      numbers: [
+        { num: "2028", lbl: "Target graduation" },
+        { num: "3+", lbl: "Portfolio projects in build" },
+        { num: "10+ yrs", lbl: "Domain context to draw from" }
+      ]
+    }
+  };
+
+  const LABELS = {
+    analytical: "Lab Operations",
+    quality: "Product Grading",
+    response: "Safety & ER",
+    field: "Field & Flight",
+    liaison: "Leadership",
+    cs: "CS & AI/ML"
+  };
+
+  const params = new URLSearchParams(location.search);
+  const key = params.get('domain');
+  const root = document.getElementById('star-root');
+
+  if (!key || !STORIES[key]) {
+    root.innerHTML = `
+      <div class="container star-missing">
+        <h1>Pick a domain.</h1>
+        <p>Open the Map and click any capability card to jump to its STAR story.</p>
+        <a class="btn btn-primary" href="mindmap.html">View the Map <span class="arrow">→</span></a>
+      </div>
+    `;
+    return;
+  }
+
+  const s = STORIES[key];
+  const idx = s.order.indexOf(key);
+  const next = s.order[(idx + 1) % s.order.length];
+  const prev = s.order[(idx - 1 + s.order.length) % s.order.length];
+
+  document.title = `${s.name.replace(/&amp;/g,'&')} · STAR · Anthony Hinojosa`;
+
+  const metaCells = Object.entries(s.meta).map(([k,v]) => `
+    <div><span class="k">${k}</span><span class="v">${v}</span></div>
+  `).join('');
+
+  const actionList = s.action.map(a => `<li>${a}</li>`).join('');
+  const numbersHtml = s.numbers.map(n => `<div><span class="num">${n.num}</span><span class="lbl">${n.lbl}</span></div>`).join('');
+
+  root.innerHTML = `
+    <section class="star-hero">
+      <div class="container">
+        <div class="breadcrumb">
+          <a href="mindmap.html">← Map</a>
+          <span class="sep">/</span>
+          <span>${s.code}</span>
+          <span class="sep">/</span>
+          <span>STAR Story</span>
+        </div>
+        <span class="kicker">${s.kicker}</span>
+        <h1>${s.name}<em>.</em></h1>
+        <p class="lede">${s.lede}</p>
+
+        <div class="star-meta">${metaCells}</div>
+      </div>
+    </section>
+
+    <section class="star-body">
+      <div class="container">
+
+        <div class="star-block">
+          <div class="gutter">
+            <span class="tag">Part 1 / Situation</span>
+            <span class="letter">S</span>
+          </div>
+          <div>
+            <h2>Situation</h2>
+            <p>${s.situation}</p>
+          </div>
+        </div>
+
+        <div class="star-block">
+          <div class="gutter">
+            <span class="tag">Part 2 / Task</span>
+            <span class="letter">T</span>
+          </div>
+          <div>
+            <h2>Task</h2>
+            <p>${s.task}</p>
+          </div>
+        </div>
+
+        <div class="star-block">
+          <div class="gutter">
+            <span class="tag">Part 3 / Action</span>
+            <span class="letter">A</span>
+          </div>
+          <div>
+            <h2>Action</h2>
+            <ul>${actionList}</ul>
+          </div>
+        </div>
+
+        <div class="star-block emph">
+          <div class="gutter">
+            <span class="tag">Part 4 / Result</span>
+            <span class="letter">R</span>
+          </div>
+          <div>
+            <h2>Result</h2>
+            <p>${s.result_summary}</p>
+            <div class="star-numbers">${numbersHtml}</div>
+          </div>
+        </div>
+
+        <nav class="star-nav" aria-label="Story navigation">
+          <a href="star.html?domain=${prev}">
+            <span class="mono">← Previous story</span>
+            <strong>${LABELS[prev]}</strong>
+          </a>
+          <a class="next" href="star.html?domain=${next}">
+            <span class="mono">Next story →</span>
+            <strong>${LABELS[next]}</strong>
+          </a>
+        </nav>
+      </div>
+    </section>
+  `;
+})();
+</script>
+</body>
+</html>

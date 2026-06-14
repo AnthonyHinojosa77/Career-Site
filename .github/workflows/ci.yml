@@ -1,0 +1,35 @@
+name: CI
+
+# Career-Site is a zero-dependency static site: plain HTML/CSS/JS with no
+# package.json, no bundler, and no build or test step. There is therefore
+# nothing to `npm ci` / `npm run build`. The meaningful basic check for this
+# repo is a JavaScript syntax check (`node --check`) so a typo that would break
+# the page in the browser fails CI instead.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  syntax-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Syntax-check all JS (static site — no build step)
+        run: |
+          set -e
+          found=0
+          while IFS= read -r f; do
+            found=1
+            echo "checking $f"
+            node --check "$f"
+          done < <(find . -name '*.js' -not -path './.git/*')
+          if [ "$found" -eq 0 ]; then echo "no JS files found"; fi
+          echo "All JS files passed node --check."

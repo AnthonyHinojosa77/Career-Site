@@ -92,6 +92,21 @@
   100% { transform: translateX(-50%); }
 }
 
+/* Reduced motion: static-freeze the ticker and any continuous animation */
+@media (prefers-reduced-motion: reduce) {
+  .ticker-inner {
+    animation: none;
+    transform: none;
+  }
+  /* Belt-and-suspenders: neutralize any other looping/auto animation */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
 /* Hero */
 .hero {
   padding: 64px 0 96px;

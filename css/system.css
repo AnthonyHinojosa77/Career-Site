@@ -358,6 +358,17 @@ body[data-theme="dark"] .tag.sig { color: var(--signal-ink); }
   .reveal { opacity: 1; transform: none; transition: none; }
 }
 
+/* Scroll-reveal for stat / project cards (IntersectionObserver adds .is-visible) */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.scroll-reveal.is-visible { opacity: 1; transform: translateY(0); }
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal { opacity: 1; transform: none; transition: none; }
+}
+
 /* Footer */
 .site-footer {
   border-top: var(--hair);

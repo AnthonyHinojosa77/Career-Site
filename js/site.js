@@ -14,6 +14,31 @@
   );
   document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
 
+  // Scroll-reveal for stat / project cards (adds .is-visible as they enter view)
+  const srEls = document.querySelectorAll(".scroll-reveal");
+  if (srEls.length) {
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    if (prefersReducedMotion) {
+      // Respect reduced motion: show cards immediately, no transition.
+      srEls.forEach((el) => el.classList.add("is-visible"));
+    } else {
+      const sio = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("is-visible");
+              sio.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+      );
+      srEls.forEach((el) => sio.observe(el));
+    }
+  }
+
   // Animated counters
   const counters = document.querySelectorAll("[data-counter]");
   const cio = new IntersectionObserver((entries) => {

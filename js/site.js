@@ -204,15 +204,21 @@
     });
   });
 
-  // Live clock in nav/footer
+  // Live clock in nav/footer — Anthony's local time (US Central, auto CST/CDT)
   const clocks = document.querySelectorAll("[data-clock]");
   if (clocks.length) {
+    const ctFmt = new Intl.DateTimeFormat("en-US", {
+      timeZone: "America/Chicago",
+      hour12: false,
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+    });
     const tick = () => {
-      const d = new Date();
-      const hh = String(d.getUTCHours()).padStart(2, "0");
-      const mm = String(d.getUTCMinutes()).padStart(2, "0");
-      const ss = String(d.getUTCSeconds()).padStart(2, "0");
-      clocks.forEach((c) => (c.textContent = `${hh}:${mm}:${ss} UTC`));
+      const parts = {};
+      for (const p of ctFmt.formatToParts(new Date())) parts[p.type] = p.value;
+      const hh = parts.hour === "24" ? "00" : parts.hour;
+      clocks.forEach((c) => (c.textContent = `${hh}:${parts.minute}:${parts.second} CT`));
     };
     tick();
     setInterval(tick, 1000);

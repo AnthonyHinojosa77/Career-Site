@@ -55,13 +55,21 @@
     border: 1px solid var(--ink);
     background: var(--paper-2);
     overflow: hidden;
+    cursor: grab;
+    touch-action: none;
+    overscroll-behavior: contain;
   }
+  .mm-stage.is-dragging { cursor: grabbing; }
+  .mm-stage.is-dragging .mm-node { cursor: grabbing; }
   .mm-world {
     position: absolute;
     top: 0; left: 0;
-    width: 100%; height: 100%;
-    transition: top 0.7s cubic-bezier(0.22, 1, 0.36, 1), left 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    width: 6000px; height: 6000px;
+    transform-origin: 0 0;
+    will-change: transform;
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
   }
+  .mm-world.is-direct { transition: none; }
   .mm-grid {
     position: absolute;
     left: 0; top: 0;
@@ -141,6 +149,7 @@
     margin-bottom: 8px;
   }
   .mm-center .name {
+    display: block;
     font-family: var(--f-display);
     font-size: 44px;
     line-height: 0.95;
@@ -461,7 +470,7 @@
     <div class="container">
       <div class="eyebrow reveal">§ 06 · File · Experience Map</div>
       <h1 class="reveal">One operator,<br>six domains<em style="font-style: italic; color: var(--signal);">.</em></h1>
-      <p class="lede reveal">An interactive mind map. Click the center to expand into capability domains. Click a domain to branch out its skills. Click any skill to open its detail and STAR story.</p>
+      <p class="lede reveal">An interactive mind map. All six capability domains open together. Scroll or use a trackpad to zoom, drag empty grid space to move, and select a capability to reveal only its skill branch.</p>
     </div>
   </section>
 
@@ -469,17 +478,17 @@
     <div class="container">
 
       <div class="mm-controls">
-        <span class="hint" id="mm-breadcrumb">▸ <b>Click the center bubble</b> to begin</span>
+        <span class="hint" id="mm-breadcrumb">▸ <b>Scroll to zoom</b> · Drag empty space to move</span>
         <div class="actions">
-          <button class="mm-btn" id="mm-expand-all">EXPAND ALL</button>
+          <button class="mm-btn" id="mm-expand-all">FIT CAPABILITIES</button>
           <button class="mm-btn" id="mm-collapse-all">COLLAPSE</button>
         </div>
       </div>
 
-      <div class="mm-stage" id="mm-stage" role="figure" aria-label="Career experience mind map">
+      <div class="mm-stage" id="mm-stage" role="figure" tabindex="0" aria-label="Career experience mind map. Scroll to zoom and drag empty space to move." aria-describedby="mm-breadcrumb">
         <div class="mm-corner tl">FILE · AH,2026 / MAP,01 <span class="sig">●</span></div>
-        <div class="mm-corner tr">INTERACTIVE · V3</div>
-        <div class="mm-corner bl">REV · 04,2026</div>
+        <div class="mm-corner tr">INTERACTIVE · V4</div>
+        <div class="mm-corner bl">REV · 07,2026</div>
         <div class="mm-corner br" id="mm-state-stamp">STATE · COLLAPSED</div>
         <div class="mm-world" id="mm-world">
           <div class="mm-grid" aria-hidden="true"></div>

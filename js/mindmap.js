@@ -11,6 +11,9 @@
   let selectedLeaf = null;
 
   let W = 0, H = 0;
+  let panX = 0, panY = 0;
+  let viewExpansion = 0;
+  let compactViewHeight = 0;
   // Absolute world coordinates for center bubble
   const WORLD_CX = 3000, WORLD_CY = 3000;
 
@@ -95,6 +98,9 @@
     // Translate world so (fx, fy) sits at (W/2, H/2) of stage
     const tx = W / 2 - fx;
     const ty = H / 2 - fy;
+    panX = tx;
+    panY = ty;
+    world.classList.remove('is-direct');
     world.style.left = tx + 'px';
     world.style.top = ty + 'px';
   }
@@ -222,15 +228,16 @@
 
   function updateCrumb() {
     let html = '';
-    if (!centerExpanded) html = '▸ <b>Click the center bubble</b> to begin';
-    else if (!expandedDomain) html = 'OPERATOR <span style="opacity:0.4; margin:0 8px;">/</span> <b>Click a domain</b> to branch';
+    const navHint = ' <span style="opacity:0.45; margin:0 8px;">·</span> Scroll to expand view · Drag empty grid to move';
+    if (!centerExpanded) html = '▸ <b>Click the center bubble</b> to begin' + navHint;
+    else if (!expandedDomain) html = 'OPERATOR <span style="opacity:0.4; margin:0 8px;">/</span> <b>Click a domain</b> to branch' + navHint;
     else {
       const d = MM_DOMAINS.find(x => x.key === expandedDomain);
       if (selectedLeaf) {
         const leaf = d.leaves[selectedLeaf.leafIdx];
         html = `OPERATOR <span style="opacity:0.4; margin:0 8px;">/</span> ${d.title} <span style="opacity:0.4; margin:0 8px;">/</span> <b style="color: var(--signal);">${leaf.title}</b>`;
       } else {
-        html = `OPERATOR <span style="opacity:0.4; margin:0 8px;">/</span> <b>${d.title}</b> <span style="opacity:0.4; margin:0 8px;">/</span> <span>Click a skill bubble</span>`;
+        html = `OPERATOR <span style="opacity:0.4; margin:0 8px;">/</span> <b>${d.title}</b> <span style="opacity:0.4; margin:0 8px;">/</span> <span>Click a skill bubble</span>` + navHint;
       }
     }
     crumb.innerHTML = html;
@@ -241,7 +248,7 @@
     if (centerExpanded && !expandedDomain) state = 'DOMAINS';
     else if (centerExpanded && expandedDomain && !selectedLeaf) state = 'DOMAIN · ' + expandedDomain.toUpperCase();
     else if (selectedLeaf) state = 'LEAF · ' + selectedLeaf.domainKey.toUpperCase();
-    stamp.textContent = 'STATE · ' + state;
+    stamp.textContent = 'STATE · ' + state + (viewExpansion > 0.02 ? ' · VIEW EXPANDED' : '');
   }
 
   const dId = document.getElementById('mm-detail-id');
@@ -340,8 +347,67 @@
     }
   });
 
+  function clamp(value, min, max) {
+    return Math.min(max, Math.max(min, value));
+  }
+
+  function setViewExpansion(next) {
+    viewExpansion = clamp(next, 0, 1);
+    if (!compactViewHeight) compactViewHeight = stage.getBoundingClientRect().height;
+    const expandedHeight = Math.min(1120, compactViewHeight + 360);
+    stage.style.height = (compactViewHeight + (expandedHeight - compactViewHeight) * viewExpansion) + 'px';
+    stage.classList.toggle('view-expanded', viewExpansion > 0.02);
+    updateStamp();
+    requestAnimationFrame(layout);
+  }
+
+  stage.addEventListener('wheel', e => {
+    if (!e.deltaY) return;
+    const next = clamp(viewExpansion + e.deltaY / 900, 0, 1);
+    if (next === viewExpansion) return;
+    e.preventDefault();
+    setViewExpansion(next);
+  }, { passive: false });
+
+  let dragState = null;
+  stage.addEventListener('pointerdown', e => {
+    if (e.button !== 0 || e.target.closest('.mm-node')) return;
+    dragState = {
+      pointerId: e.pointerId,
+      startX: e.clientX,
+      startY: e.clientY,
+      panX,
+      panY
+    };
+    stage.classList.add('is-dragging');
+    world.classList.add('is-direct');
+    stage.setPointerCapture(e.pointerId);
+    stage.focus({ preventScroll: true });
+    e.preventDefault();
+  });
+
+  stage.addEventListener('pointermove', e => {
+    if (!dragState || e.pointerId !== dragState.pointerId) return;
+    panX = dragState.panX + e.clientX - dragState.startX;
+    panY = dragState.panY + e.clientY - dragState.startY;
+    world.style.left = panX + 'px';
+    world.style.top = panY + 'px';
+  });
+
+  function finishDrag(e) {
+    if (!dragState || e.pointerId !== dragState.pointerId) return;
+    dragState = null;
+    stage.classList.remove('is-dragging');
+    world.classList.remove('is-direct');
+    if (stage.hasPointerCapture(e.pointerId)) stage.releasePointerCapture(e.pointerId);
+  }
+
+  stage.addEventListener('pointerup', finishDrag);
+  stage.addEventListener('pointercancel', finishDrag);
+
   build();
   render();
+  compactViewHeight = stage.getBoundingClientRect().height;
 
   const params = new URLSearchParams(location.search);
   const preopen = params.get('open');
@@ -352,5 +418,8 @@
     render();
   }
 
-  window.addEventListener('resize', () => layout());
+  window.addEventListener('resize', () => {
+    if (viewExpansion === 0) compactViewHeight = stage.getBoundingClientRect().height;
+    layout();
+  });
 })();

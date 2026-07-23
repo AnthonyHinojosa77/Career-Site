@@ -11,11 +11,9 @@
   let selectedLeaf = null;
 
   let W = 0, H = 0;
-  let camera = { x: 0, y: 0, scale: 1 };
-  let cameraReady = false;
-  let cameraInteracted = false;
-  const MIN_ZOOM = 0.5;
-  const MAX_ZOOM = 1.45;
+  let panX = 0, panY = 0;
+  let viewExpansion = 0;
+  let compactViewHeight = 0;
   // Absolute world coordinates for center bubble
   const WORLD_CX = 3000, WORLD_CY = 3000;
 
@@ -72,99 +70,39 @@
     });
 
     drawLines();
-    if (!cameraReady) fitVisible(false);
+    panToFocus();
   }
 
-  function clamp(value, min, max) {
-    return Math.min(max, Math.max(min, value));
-  }
-
-  function setCamera(x, y, scale, direct) {
-    const nextScale = clamp(scale, MIN_ZOOM, MAX_ZOOM);
-    camera = { x, y, scale: nextScale };
-    cameraReady = true;
-    if (direct) world.classList.add('is-direct');
-    world.style.transform = `matrix(${nextScale}, 0, 0, ${nextScale}, ${x}, ${y})`;
-    updateStamp();
-    if (direct && !stage.classList.contains('is-dragging')) {
-      requestAnimationFrame(() => world.classList.remove('is-direct'));
-    }
-  }
-
-  function visibleBounds() {
-    let minX = WORLD_CX - 170;
-    let maxX = WORLD_CX + 170;
-    let minY = WORLD_CY - 125;
-    let maxY = WORLD_CY + 125;
-
-    if (centerExpanded) {
-      MM_DOMAINS.forEach(d => {
-        minX = Math.min(minX, d._x - 130);
-        maxX = Math.max(maxX, d._x + 130);
-        minY = Math.min(minY, d._y - 72);
-        maxY = Math.max(maxY, d._y + 72);
-      });
+  function panToFocus() {
+    // Determine the focus point in world coords
+    let fx = WORLD_CX, fy = WORLD_CY;
+    if (selectedLeaf) {
+      const d = MM_DOMAINS.find(x => x.key === selectedLeaf.domainKey);
+      const leaf = d.leaves[selectedLeaf.leafIdx];
+      // Focus mid-point between domain and leaf for context
+      fx = (d._x + leaf._x) / 2;
+      fy = (d._y + leaf._y) / 2;
+    } else if (expandedDomain) {
+      const d = MM_DOMAINS.find(x => x.key === expandedDomain);
+      // Focus mid-point between center and the fanned-out leaves
+      const leafOffsetX = 200;
+      const lx = d._x + (d.side === 'left' ? -leafOffsetX : leafOffsetX);
+      fx = (WORLD_CX + lx) / 2;
+      fy = d._y;
+    } else if (centerExpanded) {
+      fx = WORLD_CX; fy = WORLD_CY;
+    } else {
+      fx = WORLD_CX; fy = WORLD_CY;
     }
 
-    if (expandedDomain) {
-      const d = MM_DOMAINS.find(item => item.key === expandedDomain);
-      if (d) {
-        d.leaves.forEach(leaf => {
-          minX = Math.min(minX, leaf._x - 100);
-          maxX = Math.max(maxX, leaf._x + 100);
-          minY = Math.min(minY, leaf._y - 30);
-          maxY = Math.max(maxY, leaf._y + 30);
-        });
-      }
-    }
-
-    return { minX, maxX, minY, maxY };
-  }
-
-  function fitVisible(animate = true, focusOnly = false) {
-    let bounds = visibleBounds();
-    if (focusOnly && expandedDomain) {
-      const d = MM_DOMAINS.find(item => item.key === expandedDomain);
-      if (d) {
-        bounds = {
-          minX: Math.min(WORLD_CX - 170, d._x - 130),
-          maxX: Math.max(WORLD_CX + 170, d._x + 130),
-          minY: Math.min(WORLD_CY - 125, d._y - 72),
-          maxY: Math.max(WORLD_CY + 125, d._y + 72)
-        };
-        d.leaves.forEach(leaf => {
-          bounds.minX = Math.min(bounds.minX, leaf._x - 100);
-          bounds.maxX = Math.max(bounds.maxX, leaf._x + 100);
-          bounds.minY = Math.min(bounds.minY, leaf._y - 30);
-          bounds.maxY = Math.max(bounds.maxY, leaf._y + 30);
-        });
-      }
-    }
-    const padding = W < 700 ? 34 : 62;
-    const boundsW = Math.max(1, bounds.maxX - bounds.minX);
-    const boundsH = Math.max(1, bounds.maxY - bounds.minY);
-    const scale = clamp(
-      Math.min((W - padding * 2) / boundsW, (H - padding * 2) / boundsH),
-      MIN_ZOOM,
-      1.08
-    );
-    const cx = (bounds.minX + bounds.maxX) / 2;
-    const cy = (bounds.minY + bounds.maxY) / 2;
-    setCamera(W / 2 - cx * scale, H / 2 - cy * scale, scale, !animate);
-  }
-
-  function fitCenter(animate = true) {
-    const scale = Math.min(1.08, MAX_ZOOM);
-    setCamera(W / 2 - WORLD_CX * scale, H / 2 - WORLD_CY * scale, scale, !animate);
-  }
-
-  function zoomAt(screenX, screenY, factor) {
-    const worldX = (screenX - camera.x) / camera.scale;
-    const worldY = (screenY - camera.y) / camera.scale;
-    const nextScale = clamp(camera.scale * factor, MIN_ZOOM, MAX_ZOOM);
-    const nextX = screenX - worldX * nextScale;
-    const nextY = screenY - worldY * nextScale;
-    setCamera(nextX, nextY, nextScale, true);
+    // Translate world so (fx, fy) sits at (W/2, H/2) of stage
+    const tx = W / 2 - fx;
+    const ty = H / 2 - fy;
+    panX = tx;
+    panY = ty;
+    world.classList.remove('is-direct');
+    world.style.left = tx + 'px';
+    world.style.top = ty + 'px';
   }
 
   function drawLines() {
@@ -188,13 +126,11 @@
   }
 
   function build() {
-    const center = document.createElement('button');
-    center.type = 'button';
+    const center = document.createElement('div');
     center.className = 'mm-node mm-center visible';
-    center.setAttribute('aria-label', 'Toggle capability overview');
     center.innerHTML = `
       <span class="mono">OPERATOR / NODE 00</span>
-      <span class="name">Anthony<br>Hinojosa</span>
+      <div class="name">Anthony<br>Hinojosa</div>
       <span class="tag">● ACTIVE · 10+ YRS</span>
       <span class="hint-text"></span>
     `;
@@ -244,8 +180,6 @@
       centerExpanded = true;
     }
     render();
-    if (centerExpanded) fitVisible();
-    else fitCenter();
   }
 
   function toggleDomain(key) {
@@ -260,8 +194,6 @@
       openDomainDetail(key);
     }
     render();
-    if (expandedDomain) fitVisible(true, true);
-    else fitVisible();
   }
 
   function selectLeaf(domainKey, leafIdx) {
@@ -296,17 +228,16 @@
 
   function updateCrumb() {
     let html = '';
-    if (!centerExpanded) {
-      html = '▸ <b>Click the center bubble</b> to begin · Scroll to zoom · Drag empty space to move';
-    } else if (!expandedDomain) {
-      html = 'OPERATOR <span style="opacity:0.4; margin:0 8px;">/</span> <b>Click a domain</b> to focus its branch · Scroll or drag to navigate';
-    } else {
+    const navHint = ' <span style="opacity:0.45; margin:0 8px;">·</span> Scroll to expand view · Drag empty grid to move';
+    if (!centerExpanded) html = '▸ <b>Click the center bubble</b> to begin' + navHint;
+    else if (!expandedDomain) html = 'OPERATOR <span style="opacity:0.4; margin:0 8px;">/</span> <b>Click a domain</b> to branch' + navHint;
+    else {
       const d = MM_DOMAINS.find(x => x.key === expandedDomain);
       if (selectedLeaf) {
         const leaf = d.leaves[selectedLeaf.leafIdx];
         html = `OPERATOR <span style="opacity:0.4; margin:0 8px;">/</span> ${d.title} <span style="opacity:0.4; margin:0 8px;">/</span> <b style="color: var(--signal);">${leaf.title}</b>`;
       } else {
-        html = `OPERATOR <span style="opacity:0.4; margin:0 8px;">/</span> <b>${d.title}</b> <span style="opacity:0.4; margin:0 8px;">/</span> <span>Click a skill bubble · Scroll out or drag to navigate</span>`;
+        html = `OPERATOR <span style="opacity:0.4; margin:0 8px;">/</span> <b>${d.title}</b> <span style="opacity:0.4; margin:0 8px;">/</span> <span>Click a skill bubble</span>` + navHint;
       }
     }
     crumb.innerHTML = html;
@@ -314,10 +245,10 @@
 
   function updateStamp() {
     let state = 'COLLAPSED';
-    if (centerExpanded && !expandedDomain) state = 'CAPABILITIES';
-    else if (centerExpanded && expandedDomain && !selectedLeaf) state = 'BRANCH · ' + expandedDomain.toUpperCase();
-    else if (selectedLeaf) state = 'SKILL · ' + selectedLeaf.domainKey.toUpperCase();
-    stamp.textContent = 'STATE · ' + state + ' · VIEW ' + Math.round(camera.scale * 100) + '%';
+    if (centerExpanded && !expandedDomain) state = 'DOMAINS';
+    else if (centerExpanded && expandedDomain && !selectedLeaf) state = 'DOMAIN · ' + expandedDomain.toUpperCase();
+    else if (selectedLeaf) state = 'LEAF · ' + selectedLeaf.domainKey.toUpperCase();
+    stamp.textContent = 'STATE · ' + state + (viewExpansion > 0.02 ? ' · VIEW EXPANDED' : '');
   }
 
   const dId = document.getElementById('mm-detail-id');
@@ -345,7 +276,9 @@
     dStamp.textContent = d.stamp;
     dStar.setAttribute('href', 'star.html?domain=' + key);
     dStar.innerHTML = `Read the STAR story · ${d.title} <span class="arrow">→</span>`;
+    const wasOpen = detail.classList.contains('open');
     detail.classList.add('open');
+    if (!wasOpen) scrollDetailIntoView();
   }
 
   function openLeafDetail(domainKey, leafIdx) {
@@ -389,7 +322,6 @@
     selectedLeaf = null;
     closeDetail();
     render();
-    fitVisible();
   });
 
   document.getElementById('mm-expand-all').addEventListener('click', () => {
@@ -398,7 +330,6 @@
     selectedLeaf = null;
     openDomainDetail('response');
     render();
-    fitVisible(true, true);
   });
   document.getElementById('mm-collapse-all').addEventListener('click', () => {
     centerExpanded = false;
@@ -406,34 +337,36 @@
     selectedLeaf = null;
     closeDetail();
     render();
-    fitCenter();
   });
 
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') {
-      if (selectedLeaf) {
-        selectedLeaf = null;
-        openDomainDetail(expandedDomain);
-        render();
-      } else if (expandedDomain) {
-        expandedDomain = null;
-        closeDetail();
-        render();
-        fitVisible();
-      } else if (centerExpanded) {
-        centerExpanded = false;
-        render();
-        fitCenter();
-      }
+      if (selectedLeaf) { selectedLeaf = null; openDomainDetail(expandedDomain); render(); }
+      else if (expandedDomain) { expandedDomain = null; closeDetail(); render(); }
+      else if (centerExpanded) { centerExpanded = false; render(); }
     }
   });
 
+  function clamp(value, min, max) {
+    return Math.min(max, Math.max(min, value));
+  }
+
+  function setViewExpansion(next) {
+    viewExpansion = clamp(next, 0, 1);
+    if (!compactViewHeight) compactViewHeight = stage.getBoundingClientRect().height;
+    const expandedHeight = Math.min(1120, compactViewHeight + 360);
+    stage.style.height = (compactViewHeight + (expandedHeight - compactViewHeight) * viewExpansion) + 'px';
+    stage.classList.toggle('view-expanded', viewExpansion > 0.02);
+    updateStamp();
+    requestAnimationFrame(layout);
+  }
+
   stage.addEventListener('wheel', e => {
+    if (!e.deltaY) return;
+    const next = clamp(viewExpansion + e.deltaY / 900, 0, 1);
+    if (next === viewExpansion) return;
     e.preventDefault();
-    cameraInteracted = true;
-    const rect = stage.getBoundingClientRect();
-    const factor = Math.exp(-e.deltaY * 0.0015);
-    zoomAt(e.clientX - rect.left, e.clientY - rect.top, factor);
+    setViewExpansion(next);
   }, { passive: false });
 
   let dragState = null;
@@ -443,10 +376,9 @@
       pointerId: e.pointerId,
       startX: e.clientX,
       startY: e.clientY,
-      cameraX: camera.x,
-      cameraY: camera.y
+      panX,
+      panY
     };
-    cameraInteracted = true;
     stage.classList.add('is-dragging');
     world.classList.add('is-direct');
     stage.setPointerCapture(e.pointerId);
@@ -456,9 +388,10 @@
 
   stage.addEventListener('pointermove', e => {
     if (!dragState || e.pointerId !== dragState.pointerId) return;
-    const dx = e.clientX - dragState.startX;
-    const dy = e.clientY - dragState.startY;
-    setCamera(dragState.cameraX + dx, dragState.cameraY + dy, camera.scale, true);
+    panX = dragState.panX + e.clientX - dragState.startX;
+    panY = dragState.panY + e.clientY - dragState.startY;
+    world.style.left = panX + 'px';
+    world.style.top = panY + 'px';
   });
 
   function finishDrag(e) {
@@ -468,29 +401,13 @@
     world.classList.remove('is-direct');
     if (stage.hasPointerCapture(e.pointerId)) stage.releasePointerCapture(e.pointerId);
   }
+
   stage.addEventListener('pointerup', finishDrag);
   stage.addEventListener('pointercancel', finishDrag);
 
-  stage.addEventListener('dblclick', e => {
-    if (e.target.closest('.mm-node')) return;
-    fitVisible();
-  });
-
-  stage.addEventListener('keydown', e => {
-    if (e.key === '+' || e.key === '=') {
-      e.preventDefault();
-      zoomAt(W / 2, H / 2, 1.15);
-    } else if (e.key === '-') {
-      e.preventDefault();
-      zoomAt(W / 2, H / 2, 1 / 1.15);
-    } else if (e.key === '0') {
-      e.preventDefault();
-      fitVisible();
-    }
-  });
-
   build();
   render();
+  compactViewHeight = stage.getBoundingClientRect().height;
 
   const params = new URLSearchParams(location.search);
   const preopen = params.get('open');
@@ -499,15 +416,10 @@
     expandedDomain = preopen;
     openDomainDetail(preopen);
     render();
-    fitVisible(false, true);
   }
 
   window.addEventListener('resize', () => {
+    if (viewExpansion === 0) compactViewHeight = stage.getBoundingClientRect().height;
     layout();
-    if (!cameraInteracted) {
-      if (expandedDomain) fitVisible(false, true);
-      else if (centerExpanded) fitVisible(false);
-      else fitCenter(false);
-    }
   });
 })();

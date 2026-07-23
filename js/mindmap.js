@@ -6,7 +6,7 @@
   const crumb = document.getElementById('mm-breadcrumb');
   const stamp = document.getElementById('mm-state-stamp');
 
-  let centerExpanded = true;
+  let centerExpanded = false;
   let expandedDomain = null;
   let selectedLeaf = null;
 
@@ -121,8 +121,25 @@
     return { minX, maxX, minY, maxY };
   }
 
-  function fitVisible(animate = true) {
-    const bounds = visibleBounds();
+  function fitVisible(animate = true, focusOnly = false) {
+    let bounds = visibleBounds();
+    if (focusOnly && expandedDomain) {
+      const d = MM_DOMAINS.find(item => item.key === expandedDomain);
+      if (d) {
+        bounds = {
+          minX: Math.min(WORLD_CX - 170, d._x - 130),
+          maxX: Math.max(WORLD_CX + 170, d._x + 130),
+          minY: Math.min(WORLD_CY - 125, d._y - 72),
+          maxY: Math.max(WORLD_CY + 125, d._y + 72)
+        };
+        d.leaves.forEach(leaf => {
+          bounds.minX = Math.min(bounds.minX, leaf._x - 100);
+          bounds.maxX = Math.max(bounds.maxX, leaf._x + 100);
+          bounds.minY = Math.min(bounds.minY, leaf._y - 30);
+          bounds.maxY = Math.max(bounds.maxY, leaf._y + 30);
+        });
+      }
+    }
     const padding = W < 700 ? 34 : 62;
     const boundsW = Math.max(1, bounds.maxX - bounds.minX);
     const boundsH = Math.max(1, bounds.maxY - bounds.minY);
@@ -243,7 +260,8 @@
       openDomainDetail(key);
     }
     render();
-    fitVisible();
+    if (expandedDomain) fitVisible(true, true);
+    else fitVisible();
   }
 
   function selectLeaf(domainKey, leafIdx) {
@@ -279,16 +297,16 @@
   function updateCrumb() {
     let html = '';
     if (!centerExpanded) {
-      html = '▸ <b>Scroll or click the operator</b> to open all capabilities';
+      html = '▸ <b>Click the center bubble</b> to begin · Scroll to zoom · Drag empty space to move';
     } else if (!expandedDomain) {
-      html = '<b>All capabilities</b> · Scroll to zoom · Drag empty space to move';
+      html = 'OPERATOR <span style="opacity:0.4; margin:0 8px;">/</span> <b>Click a domain</b> to focus its branch · Scroll or drag to navigate';
     } else {
       const d = MM_DOMAINS.find(x => x.key === expandedDomain);
       if (selectedLeaf) {
         const leaf = d.leaves[selectedLeaf.leafIdx];
         html = `OPERATOR <span style="opacity:0.4; margin:0 8px;">/</span> ${d.title} <span style="opacity:0.4; margin:0 8px;">/</span> <b style="color: var(--signal);">${leaf.title}</b>`;
       } else {
-        html = `<b>${d.title}</b> branch open · Other capabilities remain available · Scroll or drag to navigate`;
+        html = `OPERATOR <span style="opacity:0.4; margin:0 8px;">/</span> <b>${d.title}</b> <span style="opacity:0.4; margin:0 8px;">/</span> <span>Click a skill bubble · Scroll out or drag to navigate</span>`;
       }
     }
     crumb.innerHTML = html;
@@ -376,11 +394,11 @@
 
   document.getElementById('mm-expand-all').addEventListener('click', () => {
     centerExpanded = true;
-    expandedDomain = null;
+    expandedDomain = 'response';
     selectedLeaf = null;
-    closeDetail();
+    openDomainDetail('response');
     render();
-    fitVisible();
+    fitVisible(true, true);
   });
   document.getElementById('mm-collapse-all').addEventListener('click', () => {
     centerExpanded = false;
@@ -412,11 +430,6 @@
 
   stage.addEventListener('wheel', e => {
     e.preventDefault();
-    if (!centerExpanded) {
-      centerExpanded = true;
-      render();
-      fitVisible(false);
-    }
     cameraInteracted = true;
     const rect = stage.getBoundingClientRect();
     const factor = Math.exp(-e.deltaY * 0.0015);
@@ -486,11 +499,15 @@
     expandedDomain = preopen;
     openDomainDetail(preopen);
     render();
-    fitVisible(false);
+    fitVisible(false, true);
   }
 
   window.addEventListener('resize', () => {
     layout();
-    if (!cameraInteracted) fitVisible(false);
+    if (!cameraInteracted) {
+      if (expandedDomain) fitVisible(false, true);
+      else if (centerExpanded) fitVisible(false);
+      else fitCenter(false);
+    }
   });
 })();

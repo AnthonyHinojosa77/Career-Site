@@ -69,3 +69,9 @@ Progressive-disclosure map with a camera that pans the focused node to center.
 - Titles kept accurate (IC with POC/step-up responsibilities).
 - The six skill domains map 1:1 to the six STAR stories in `star.html`:
   analytical, quality, response, field, liaison, cs.
+
+<!-- ai-agent-system:begin -->
+@AGENTS.md
+
+Use the repository's actual commands, architecture, and more specific instructions when performing work.
+<!-- ai-agent-system:end -->

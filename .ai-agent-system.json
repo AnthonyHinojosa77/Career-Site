@@ -1,5 +1,5 @@
 {
-  "content_sha256": "d15b7596e5d25536b7ab59a94b0adef59c0111041391983694c099e9ef97cd62",
+  "content_sha256": "6017fe6c4ef6dd936fd30e5493da60968131744aecfac35eb4611862f59fcbc3",
   "files": {
     ".agents/skills/babysit-pr/SKILL.md": "5ac3d11c2479bf0d5f8e9bffa9992e50072ffa2efeb4253fb491291b2c240dc7",
     ".agents/skills/babysit-pr/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
@@ -21,7 +21,7 @@
     ".claude/skills/frontend-design/SKILL.md": "d91970639e9f5c37682ac7ab60094d35f1c7c1f38d731bd56396563aee10c1d3",
     ".claude/skills/html-communication/SKILL.md": "a4b1cb0668cbe955b5693f1c385eb4b51b6f2527f29e5db26bafd828fa17d3b1",
     ".claude/skills/teardown/SKILL.md": "9b9999532c2a5664ac07fd706c4f861133abec55b6a7e6c4bbe591a60ea5a4a0",
-    "AGENTS.md": "902b2a9546ee4af02c8cc7275c4cfeaf2277e8b7bac7017bca05439dbde900ff",
+    "AGENTS.md": "0f4b76dc8d7db0a3d0477530cd8dbe65116e91cbb43fb3e6c57c712dbab40eac",
     "CLAUDE.md": "d2acfb19ea375e3a4d07d4aeedf617e1f69a68d7c92655a7182bcad4841eb796"
   },
   "profile": "public-safe",
@@ -38,7 +38,7 @@
     "html-communication",
     "teardown"
   ],
-  "source_commit": "91c8ecff4690e250acbbd748443a7e033eb052bd",
+  "source_commit": "21a2509da743131ca6d5704283b9b461803272d8",
   "source_repository": "https://github.com/AnthonyHinojosa77/ai-agent-system",
   "toolkit_version": "3.3.0"
 }

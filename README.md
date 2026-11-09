@@ -68,17 +68,6 @@ career-site/
 └── CLAUDE.md
 ```
 
-## Production Status
+## Open items
 
-- [x] Contact form delivers via FormSubmit.co to anthonymhinojosa@gmail.com
-      (the very first submission triggers a one-time confirmation email from
-      FormSubmit; click it once and all future messages deliver automatically)
-- [x] Real email wired site-wide (footers, contact page)
-- [x] Resume PDF is the current 2026 resume
-- [x] Favicon, meta descriptions, robots.txt, styled 404 page
-- [x] No dead links; social link points to GitHub
-
-## Remaining (owner input needed)
-
-- [ ] Add a LinkedIn URL when ready (currently linking to GitHub)
-- [ ] Confirm certification dates (NREMT, OSHA 30, HAZWOPER)
+No LinkedIn URL is linked yet (the site links to GitHub), and the certification page shows each credential as "Active" without dates.

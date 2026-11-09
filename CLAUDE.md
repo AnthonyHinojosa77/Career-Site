@@ -12,7 +12,7 @@ accent, editorial serif display paired with mono technical readouts.
   Light/dark themes via `body[data-theme]`. All tokens live in `css/system.css`.
 - **Type:** Instrument Serif (display), Inter (body), JetBrains Mono (readouts).
 - **Motif:** File-numbered sections, serial-code IDs (CAP-01, EDU-01), crosshair
-  corners, live UTC clock, "dossier" vocabulary across every page.
+  corners, live Central Time (CT) clock, "dossier" vocabulary across every page.
 - **House rule:** No em-dashes anywhere in the site (copy, comments, or markup).
 
 ## File Structure
@@ -30,6 +30,7 @@ career-site/
 ├── blog-post.html          # Single post (AI + QA in Refineries)
 ├── resume.html             # Web resume + PDF download
 ├── contact.html            # Contact form + direct email + location
+├── 404.html                # Styled not-found page
 ├── css/
 │   ├── system.css          # Design tokens, reset, nav, footer, buttons, cards, helpers
 │   └── pages.css           # Tweaks panel + page-specific components
@@ -38,8 +39,10 @@ career-site/
 │   ├── mindmap-data.js     # Domain + leaf data for the experience map
 │   └── mindmap.js          # Mind map engine (build, layout, camera pan, detail panel)
 ├── images/
+│   ├── favicon.ico         # Site icon
 │   └── headshot.jpg        # Professional headshot
 ├── resume.pdf              # Downloadable resume
+├── robots.txt
 ├── README.md
 └── CLAUDE.md               # This file
 ```
@@ -48,12 +51,13 @@ career-site/
 - **Nav (every page):** Index · About · Experience · Map · Projects · Certs · Contact.
   `aria-current="page"` marks the active link. Blog/Resume/Skills are reached via the footer.
 - **Footer:** four columns (identity / Site / Credentials / Contact) + mono bottom bar with
-  live UTC clock (`[data-clock]`).
+  live local-time clock (America/Chicago, rendered as "CT") via `[data-clock]`.
 - **Reveal:** add class `reveal` (and the IntersectionObserver in `site.js` adds `in`).
 - **Counters:** `[data-counter]` with optional `[data-suffix]`.
 - **Filters:** wrap in `[data-filter-group="name"]`, buttons use `[data-filter]` and toggle
   `.on`; items use `[data-filter-item="name"]` + `[data-category]`.
-- **Tweaks panel:** toolbar-activated; swaps theme (Paper/Ink), hero variant, and accent color.
+- **Tweaks panel:** opened from the TWEAKS button in the footer bottom bar (injected by
+  `site.js`; the editor postMessage protocol also works). Swaps theme (Paper/Ink), hero variant, and accent color.
   Persists to `localStorage` (`ah-theme`, `ah-tweaks`).
 
 ## Mind map (mindmap.html + js/mindmap*.js)
